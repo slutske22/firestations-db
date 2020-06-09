@@ -1,0 +1,25 @@
+/* This is the border box fix */
+html {
+ box-sizing: border-box;
+ height: 100%;
+ font-family: 'Optima', sans-serif;
+}
+*, *:before, *:after {
+ box-sizing: inherit;
+}
+
+
+html, body, #root, .App, #mapID {
+   height: 100%;
+   width: 100%;
+   margin: 0px;
+   padding: 0px;
+}
+
+#mapID {
+   position: fixed;
+   top: 0px;
+   bottom: 0px;
+   left: 0px;
+   right: 0px;
+}
