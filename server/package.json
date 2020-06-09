@@ -1,11 +1,24 @@
 {
-  "name": "firestations-db-server",
-  "version": "1.0.0",
-  "description": "server side for firestations-db",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Seth Lutske",
-  "license": "ISC"
+   "name": "firestations-db-server",
+   "version": "1.0.0",
+   "description": "server side for firestations-db",
+   "main": "index.js",
+   "scripts": {
+      "dev": "npx nodemon index.js --exec babel-node --presets babel-preset-env",
+      "start": "node ./node_modules/babel-cli/bin/babel-node.js --presets env index.js"
+   },
+   "author": "Seth Lutske",
+   "license": "ISC",
+   "dependencies": {
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "express": "^4.17.1"
+   },
+   "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-core": "^6.26.3",
+      "babel-loader": "^8.1.0",
+      "babel-preset-env": "^1.7.0",
+      "nodemon": "^2.0.4"
+   }
 }
