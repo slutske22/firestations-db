@@ -19,6 +19,13 @@ const routes = app => {
 
       })
 
+   app.route('/api/test')
+      .post( (req, res) => {
+
+         console.log(req.body)
+
+      })
+
 }
 
 export default routes

@@ -2,40 +2,49 @@ import React, { useRef, useEffect } from 'react'
 import { Map as LeafletMap, TileLayer } from 'react-leaflet'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setMapReference, setMapZoom, setMapBounds, setMapCenter } from '../store/actions'
+import { setMapReference, setMapBounds } from '../store/actions'
 
 const mapboxAccessToken = 'pk.eyJ1Ijoic2x1dHNrZTIyIiwiYSI6ImNqeGw1Y3BibDAybG4zeHFyaXl3OXVwZXUifQ.fZ_5Raq5z-DUpo2AK-bQHA'
 
 const Map = () => {
-
+   
    const mapRef = useRef(null)
-
    const center = useSelector(state => state.map.center)
    const zoom = useSelector(state => state.map.zoom)
    const dispatch = useDispatch()
 
    useEffect(() => {
+      window.map = mapRef.current.leafletElement
       dispatch( setMapReference(mapRef.current.leafletElement) )
    }, [])
 
-   const moveHandler = () => {
-      const map = mapRef.current.leafletElement
-      const center = map.getCenter()
-      setBounds()
-      dispatch( setMapCenter(center) )
-   }
-
-   const zoomHandler = () => {
+   const moveEndHandler = () => {
+      
+      const { zoomThreshhold } = store.getState().map
       const map = mapRef.current.leafletElement
       const zoom = map.getZoom()
-      setBounds()
-      dispatch( setMapZoom(zoom) )
-   }
-
-   const setBounds = () => {
-      const map = mapRef.current.leafletElement
       const bounds = map.getBounds()
       dispatch( setMapBounds(bounds) )
+
+      if (zoom > zoomThreshhold){
+         fetch('/api/test', {
+            method: "POST",
+            headers: {
+               'Content-Type': 'application/json'
+               // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({
+               message: "this is a test",
+               coords: {
+                  south: bounds.getSouth(),
+                  north: bounds.getNorth(),
+                  east: bounds.getEast(),
+                  west: bounds.getWest()
+               }
+            })
+         })
+      }
+
    }
 
 
@@ -46,8 +55,7 @@ const Map = () => {
          zoom={zoom}
          id="mapID"
          ref={mapRef}
-         onMoveEnd={moveHandler}
-         onZoomEnd={zoomHandler} >
+         onMoveEnd={moveEndHandler} >
 
          {/* Support depreciated for mapbox classic styles, but they still work: */}
          <TileLayer

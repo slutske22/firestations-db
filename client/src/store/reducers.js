@@ -4,7 +4,8 @@ const initialState = {
    map: {
       reference: undefined,
       center: [35, -116],
-      zoom: 8
+      zoom: 8,
+      zoomThreshhold: 8
    }
 }
 
