@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react'
-import { Map as LeafletMap, TileLayer } from 'react-leaflet'
+import React, { useRef, useState, useEffect } from 'react'
+import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setMapReference, setMapBounds } from '../store/actions'
@@ -12,6 +12,8 @@ const Map = () => {
    const center = useSelector(state => state.map.center)
    const zoom = useSelector(state => state.map.zoom)
    const dispatch = useDispatch()
+
+   const [stations, setStations] = useState([])
 
    useEffect(() => {
       window.map = mapRef.current.leafletElement
@@ -27,7 +29,8 @@ const Map = () => {
       dispatch( setMapBounds(bounds) )
 
       if (zoom > zoomThreshhold){
-         fetch('/api/test', {
+
+         fetch('/api/stationtest', {
             method: "POST",
             headers: {
                'Content-Type': 'application/json'
@@ -40,9 +43,16 @@ const Map = () => {
                   north: bounds.getNorth(),
                   east: bounds.getEast(),
                   west: bounds.getWest()
-               }
+               },
+               "HQ city": "San Diego"
             })
          })
+         .then( res => res.json() )
+         .then( res => {
+            console.log(res)
+            setStations(res)
+         })
+
       }
 
    }
@@ -62,6 +72,11 @@ const Map = () => {
             url={`https://api.tiles.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token=${mapboxAccessToken}`}
             attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
             id="mapbox.outdoors" />
+
+            {stations.map( station => 
+               <Marker position={[station.Latitude, station.Longitude]}>
+               </Marker>
+            )}
 
 
       </LeafletMap>

@@ -26,4 +26,4 @@ export const StationSchema = new mongoose.Schema({
    "Longitude:": Number,
    "Accuracy Score": Number,
    "Accuracy Type": String
-}) 
+}, {collection: "FEMA_stations"}) 
