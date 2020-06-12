@@ -24,6 +24,20 @@ const routes = app => {
 
          console.log(req.body)
 
+         const { north, south, east, west } = req.body.coords
+
+         const query = {
+            lat: { $gt: south },
+            lat: { $lt: north },
+            lng: { $gt: east },
+            lng: { $gt: west }
+         }
+
+         find("FEMA_stations", {"HQ city": "San Diego"}, (err, docs) => {
+            console.log(err)
+            res.json(docs)
+         })
+
       })
 
 }
