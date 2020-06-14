@@ -15,13 +15,11 @@ export const getStations = (req, res) => {
       Longitude: { $gt: west, $lt: east }
    }
 
-   let search = {"HQ city": "San Diego"}
-
    Station.find(query, (err, Station) => {
       if (err) {
          res.send(err)
       }
-      console.log('Station', Station)
+      // console.log('Station', Station)
       res.json(Station)
    })
 
