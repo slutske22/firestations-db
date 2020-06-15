@@ -40,3 +40,22 @@ a:hover {
 a:visited {
    color: #337ab7;
 }
+
+
+form {
+
+   fieldset {
+      margin-bottom: 2em;
+   }
+
+   legend {
+      color: inherit;
+   }
+
+   input[type="text"]{
+      background-color: transparent;
+      border: 1px solid white;
+      margin-right: 20px;
+   }
+   
+}

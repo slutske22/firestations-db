@@ -3,7 +3,7 @@ import FemaLogo from '../assets/fema-logo-blue_medium.png'
 
 const Info = () => {
    return ( 
-      <div className="info">
+      <div className="Info">
          <h2>FEMA Fire Stations Database</h2>
          <section>
             <p className="image-wrapper">
