@@ -1,6 +1,9 @@
 import { C } from "./actions"
 
 const initialState = {
+   nav: {
+      snackbar: false
+   },
    map: {
       reference: undefined,
       center: [35, -116],

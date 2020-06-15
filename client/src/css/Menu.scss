@@ -1,0 +1,33 @@
+.Menu {
+
+   position: absolute;
+   bottom: 0px;
+   right: 0px;
+   z-index: 10000;
+   display: flex;
+   flex-direction: row;
+
+   .item {
+      margin: 20px 5px;
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+
+      &:hover{
+         background-color: rgba(0,0,0,0.9);
+         cursor: pointer;
+      }
+
+      .icon {
+         font-size: 2.2em;
+         padding: 5px;
+      }
+
+   }
+
+}

@@ -1,20 +1,24 @@
 import React from 'react'
-import Map from './Map'
+import { useSelector } from 'react-redux'
 
-import { Provider } from 'react-redux'
-import store from '../store/store'
+
+import Map from './Map'
+import Menu from './Menu'
+import SnackBar from './SnackBar'
 
 
 import '../css/index.scss'
 
 const App = () => {
 
+   const snackbar = useSelector(state => state.nav.snackbar)
+
    return (
-      <Provider store={store}>
-         <div className="App">
-            <Map />
-         </div>
-      </Provider>
+      <div className="App">
+         <Map />
+         <Menu />
+         {snackbar && <SnackBar component={snackbar} />}
+      </div>
    )
 
 }
