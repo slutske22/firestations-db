@@ -18,8 +18,8 @@
       align-items: center;
       min-width: 80px;
 
-      &:hover{
-         background-color: rgba(0,0,0,0.9);
+      &:hover, &.active{
+         background-color: rgba(0,0,0,0.85);
          cursor: pointer;
       }
 

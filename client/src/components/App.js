@@ -17,7 +17,7 @@ const App = () => {
       <div className="App">
          <Map />
          <Menu />
-         {snackbar && <SnackBar component={snackbar} />}
+         {snackbar && <SnackBar />}
       </div>
    )
 

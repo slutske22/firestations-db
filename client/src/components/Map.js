@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setMapReference, setMapBounds } from '../store/actions'
+import { setMapReference, setMapBounds } from '../store/actions/mapActions'
 
 const mapboxAccessToken = 'pk.eyJ1Ijoic2x1dHNrZTIyIiwiYSI6ImNqeGw1Y3BibDAybG4zeHFyaXl3OXVwZXUifQ.fZ_5Raq5z-DUpo2AK-bQHA'
 
