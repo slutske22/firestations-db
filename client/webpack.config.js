@@ -35,8 +35,14 @@ module.exports = {
       ]
    },
    devServer: {
-      historyApiFallback: true
-   },
+      historyApiFallback: true,
+      compress: true,
+      inline: true,
+      port: '8080',
+      allowedHosts: [
+         '.amazonaws.com'
+      ]
+  },
    plugins: [
       new HtmlWebpackPlugin({
          template: './src/index.html',

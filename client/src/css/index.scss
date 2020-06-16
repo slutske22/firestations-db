@@ -63,7 +63,7 @@ form {
    }
 
    /* Corrections for Materialize CSS */
-   input[type="text"]{
+   input[type="text"], input[type="number"]{
       background-color: transparent;
       border: 1px solid white;
       margin-right: 20px;

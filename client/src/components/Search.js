@@ -5,7 +5,9 @@ const Search = () => {
       <div className="Search">
          <h2>Search for Stations</h2>
          <section>
+         
             <form>
+            
                <fieldset className="row">
                   <legend>ID</legend>
                   <div className="input-field col s6">
@@ -21,6 +23,7 @@ const Search = () => {
                      </label>
                   </div>
                </fieldset>
+               
                <fieldset className="row">
                   <legend>Address</legend>
                   <div className="input-field col s6">
@@ -53,24 +56,27 @@ const Search = () => {
                         <input type="text" />
                      </label>
                   </div>  
+                  <div className="input-field col s6">
+                     <label>
+                        Zip Code: 
+                        <input type="number" max="99999" min="0" />
+                     </label>
+                  </div> 
                </fieldset>
+               
                <fieldset className="row">
                   <legend>Department Profile</legend>
-                  <label>Type:</label>
-                  <select multiple>
-                     <option value="career">Career</option>
-                     <option value="volunteer">Volunteer</option>
-                  </select>
-                  <label>Address 2:</label>
-                  <input type="text" />
-                  <label>City:</label>
-                  <input type="text" />
-                  <label>County:</label>
-                  <input type="text" />
-                  <label>State:</label>
-                  <input type="text" />    
+                  <label>
+                     Type:
+                     <select multiple>
+                        <option value="career">Career</option>
+                        <option value="volunteer">Volunteer</option>
+                     </select>
+                  </label>
                </fieldset>
+               
             </form>
+            
          </section>
       </div>
     );
