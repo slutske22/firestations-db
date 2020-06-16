@@ -47,7 +47,7 @@ form {
    fieldset {
       margin-bottom: 2em;
       border: 1px solid silver;
-      padding: 10px;
+      padding: 20px;
    }
 
    legend {
@@ -60,19 +60,24 @@ form {
 
    label {
       font-weight: 400;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
    }
 
    /* Corrections for Materialize CSS */
    input[type="text"], input[type="number"]{
+      
       background-color: transparent;
       border: 1px solid white;
-      margin-right: 20px;
+      width: 50%;
 
       &:focus{
          border-bottom: 1px solid #337ab7;
          -webkit-box-shadow: 0 1px 0 0 #337ab7;
          box-shadow: 0 1px 0 0 #337ab7;
       }
+      
    }
 
    input[type=text]:not(.browser-default):focus:not([readonly]){

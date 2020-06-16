@@ -3,7 +3,8 @@ export const C = {
    SET_MAP_REFERENCE: "SET_MAP_REFERENCE",
    SET_MAP_CENTER: "SET_MAP_CENTER",
    SET_MAP_ZOOM: "SET_MAP_ZOOM",
-   SET_MAP_BOUNDS: "SET_MAP_BOUNDS"
+   SET_MAP_BOUNDS: "SET_MAP_BOUNDS",
+   SET_FIRESTATIONS: "SET_FIRESTATIONS"
 
 }
 
@@ -25,4 +26,9 @@ export const setMapZoom = zoom => ({
 export const setMapBounds = bounds => ({
    type: C.SET_MAP_BOUNDS,
    bounds
+})
+
+export const setFireStations = stations => ({
+   type: C.SET_FIRESTATIONS,
+   stations
 })

@@ -1,10 +1,11 @@
 import { C } from "../actions/mapActions"
 
-const initialState = {
+export const initialState = {
    reference: undefined,
    center: [35, -116],
-   zoom: 8,
-   zoomThreshhold: 8
+   zoom: 9,
+   zoomThreshhold: 8,
+   stations: []
 }
 
 
@@ -34,6 +35,12 @@ export function mapReducers(state = initialState, action){
          return {
             ...state,
             bounds: action.bounds
+         }
+         
+      case C.SET_FIRESTATIONS:
+         return {
+            ...state,
+            stations: action.stations
          }
 
       default:
