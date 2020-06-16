@@ -5,7 +5,7 @@ import cors from 'cors'
 import routes from './routes'
 
 const app = express()
-const PORT = 3000
+const PORT = 8080
 
 app.use(express.static('../client/dist'))
 
