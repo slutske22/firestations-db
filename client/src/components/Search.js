@@ -6,27 +6,41 @@ const Search = () => {
          <h2>Search for Stations</h2>
          <section>
             <form>
-               <fieldset>
+               <fieldset className="row">
                   <legend>ID</legend>
-                  <label>Federal ID:</label>
-                  <input type="text" />
-                  <label>Department Name:</label>
-                  <input type="text" />
+                  <div className="input-field col s6">
+                     <label>Federal ID:</label>
+                     <input type="text" />
+                  </div>
+                  <div className="input-field col s6">
+                     <label>Department Name:</label>
+                     <input type="text" />
+                  </div>
                </fieldset>
-               <fieldset>
+               <fieldset className="row">
                   <legend>Address</legend>
-                  <label>Address 1:</label>
-                  <input type="text" />
-                  <label>Address 2:</label>
-                  <input type="text" />
-                  <label>City:</label>
-                  <input type="text" />
-                  <label>County:</label>
-                  <input type="text" />
-                  <label>State:</label>
-                  <input type="text" />    
+                  <div className="input-field col s6">
+                     <label>Address 1:</label>
+                     <input type="text" />
+                  </div>
+                  <div className="input-field col s6">
+                     <label>Address 2:</label>
+                     <input type="text" />
+                  </div>
+                  <div className="input-field col s6">
+                     <label>City:</label>
+                        <input type="text" />
+                  </div>
+                  <div className="input-field col s6">
+                     <label>County:</label>
+                     <input type="text" />
+                  </div>
+                  <div className="input-field col s6">
+                     <label>State:</label>
+                     <input type="text" />  
+                  </div>  
                </fieldset>
-               <fieldset>
+               <fieldset className="row">
                   <legend>Department Profile</legend>
                   <label>Type:</label>
                   <select multiple>
