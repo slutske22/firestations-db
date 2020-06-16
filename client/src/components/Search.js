@@ -9,35 +9,49 @@ const Search = () => {
                <fieldset className="row">
                   <legend>ID</legend>
                   <div className="input-field col s6">
-                     <label>Federal ID:</label>
-                     <input type="text" />
+                     <label>
+                        Federal ID: 
+                        <input type="text" />
+                     </label>
                   </div>
                   <div className="input-field col s6">
-                     <label>Department Name:</label>
-                     <input type="text" />
+                     <label>
+                        Department Name: 
+                        <input type="text" />
+                     </label>
                   </div>
                </fieldset>
                <fieldset className="row">
                   <legend>Address</legend>
                   <div className="input-field col s6">
-                     <label>Address 1:</label>
-                     <input type="text" />
-                  </div>
-                  <div className="input-field col s6">
-                     <label>Address 2:</label>
-                     <input type="text" />
-                  </div>
-                  <div className="input-field col s6">
-                     <label>City:</label>
+                     <label>
+                        Address 1: 
                         <input type="text" />
+                     </label>
                   </div>
                   <div className="input-field col s6">
-                     <label>County:</label>
-                     <input type="text" />
+                     <label>
+                        Address 2: 
+                        <input type="text" />
+                     </label>
                   </div>
                   <div className="input-field col s6">
-                     <label>State:</label>
-                     <input type="text" />  
+                     <label>
+                        City: 
+                        <input type="text" />
+                     </label>
+                  </div>
+                  <div className="input-field col s6">
+                     <label>
+                        County: 
+                        <input type="text" />
+                     </label>
+                  </div>
+                  <div className="input-field col s6">
+                     <label>
+                        State: 
+                        <input type="text" />
+                     </label>
                   </div>  
                </fieldset>
                <fieldset className="row">

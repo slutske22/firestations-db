@@ -47,6 +47,7 @@ form {
    fieldset {
       margin-bottom: 2em;
       border: 1px solid silver;
+      padding: 10px;
    }
 
    legend {
@@ -57,6 +58,11 @@ form {
       margin: 0px;
    }
 
+   label {
+      font-weight: 400;
+   }
+
+   /* Corrections for Materialize CSS */
    input[type="text"]{
       background-color: transparent;
       border: 1px solid white;
