@@ -4,7 +4,8 @@ export const C = {
    SET_MAP_CENTER: "SET_MAP_CENTER",
    SET_MAP_ZOOM: "SET_MAP_ZOOM",
    SET_MAP_BOUNDS: "SET_MAP_BOUNDS",
-   SET_FIRESTATIONS: "SET_FIRESTATIONS"
+   SET_FIRESTATIONS: "SET_FIRESTATIONS",
+   SET_OPEN_POPUP: "SET_OPEN_POPUP"
 
 }
 
@@ -31,4 +32,9 @@ export const setMapBounds = bounds => ({
 export const setFireStations = stations => ({
    type: C.SET_FIRESTATIONS,
    stations
+})
+
+export const setOpenPopup = id => ({
+   type: C.SET_OPEN_POPUP,
+   id
 })

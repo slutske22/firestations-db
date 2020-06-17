@@ -5,7 +5,8 @@ export const initialState = {
    center: [35, -116],
    zoom: 9,
    zoomThreshhold: 8,
-   stations: []
+   stations: [],
+   openPopupId: null
 }
 
 
@@ -41,6 +42,12 @@ export function mapReducers(state = initialState, action){
          return {
             ...state,
             stations: action.stations
+         }
+
+      case C.SET_OPEN_POPUP:
+         return {
+            ...state,
+            openPopupId: action.id
          }
 
       default:
