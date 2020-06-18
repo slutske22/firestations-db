@@ -89,6 +89,19 @@ form {
    input[type=text]:not(.browser-default):focus:not([readonly])+label {
       color: #9e9e9e;
    }
+
+   button.submit {
+      background-color: transparent;
+      border: 1px solid snow;
+      float: right;
+      padding: 10px;
+      text-transform: uppercase;
+
+      &:active {
+         background-color: snow;
+         color: rgba(0,0,0,0.85)
+      }
+   }
    
 }
 

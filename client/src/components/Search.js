@@ -1,25 +1,29 @@
 import React from 'react';
+import { withFormik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 
-const Search = () => {
+const Search = ({
+   values,
+   setFieldValue,
+}) => {
    return ( 
       <div className="Search">
          <h2>Search for Stations</h2>
          <section>
          
-            <form>
-            
+            <Form>
                <fieldset className="row">
                   <legend>ID</legend>
                   <div className="input-field col s6">
                      <label>
                         Federal ID: 
-                        <input type="text" />
+                        <Field type="text" name="FDID" />
                      </label>
                   </div>
                   <div className="input-field col s6">
                      <label>
                         Department Name: 
-                        <input type="text" />
+                        <Field type="text" name="Fire dept name" />
                      </label>
                   </div>
                </fieldset>
@@ -29,87 +33,105 @@ const Search = () => {
                   <div className="input-field col s6">
                      <label>
                         Address 1: 
-                        <input type="text" />
+                        <Field type="text" name="HQ addr1" />
                      </label>
                   </div>
                   <div className="input-field col s6">
                      <label>
                         Address 2: 
-                        <input type="text" />
+                        <Field type="text" name="HQ addr2" />
                      </label>
                   </div>
                   <div className="input-field col s6">
                      <label>
                         City: 
-                        <input type="text" />
+                        <Field type="text" name="HQ city" />
                      </label>
                   </div>
                   <div className="input-field col s6">
                      <label>
                         County: 
-                        <input type="text" />
+                        <Field type="text" name="County" />
                      </label>
                   </div>
                   <div className="input-field col s6">
                      <label>
                         State: 
-                        <input type="text" />
+                        <Field type="text" name="HQ state" />
                      </label>
                   </div>  
                   <div className="input-field col s6">
                      <label>
                         Zip Code: 
-                        <input type="number" max="99999" min="0" />
+                        <Field type="number" max="99999" min="0" name="HQ zip" />
                      </label>
                   </div> 
                </fieldset>
                
                <fieldset className="row">
                   <legend>Department Profile</legend>
+                  <p>Type:</p>
                   <label>
-                     Type:
-                     <select multiple>
-                        <option value="career">Career</option>
-                        <option value="volunteer">Volunteer</option>
-                     </select>
+                     Career
+                     <input 
+                        type="radio" 
+                        name="Organization Type"
+                        value="Career"
+                        checked={values["Organization Type"] === "Career"}
+                        onChange={() => setFieldValue("Organization Type", "Career")} />
+                  </label>
+                  <label>
+                     Volunteer
+                     <input 
+                        type="radio" 
+                        name="Organization Type"
+                        value="Volunteer"
+                        checked={values["Organization Type"] === "Volunteer"}
+                        onChange={() => setFieldValue("Organization Type", "Volunteer")} />
                   </label>
                </fieldset>
-               
-            </form>
+
+               <button className="submit" type="submit">
+                  Add Station
+               </button>
+            </Form>
             
          </section>
       </div>
     );
 }
+
+const FormikSearch = withFormik({
+   mapPropsToValues(){
+      return {
+         "FDID": '',
+         "Fire dept name": '',
+         "HQ addr1": '',
+         "HQ addr2": '',
+         "HQ city": '',
+         "HQ state": '',
+         "HQ zip": '',
+         "HQ phone": '',
+         "HQ fax": '',
+         "County": '',
+         "Dept Type": '',
+         "Organization Type": '',
+         "Website": '',
+         "Number Of Stations": '',
+         "Active Firefighters - Career": '',
+         "Active Firefighters - Volunteer": '',
+         "Active Firefighters - Paid per Call": '',
+         "Non-Firefighting - Civilian": '',
+         "Non-Firefighting - Volunteer": '',
+         "Primary agency for emergency mgmt": '',
+      }
+   },
+   handleSubmit(values){
+      console.log(values)
+   },
+   validationSchema: Yup.object().shape({
+
+   })
+})(Search)
  
-export default Search;
-
-
-
-// {
-//   "_id": "5ee054bcfbb9c2ca4bad52cf",
-//   "FDID": "19005",
-//   "Fire dept name": "Alhambra Fire Department",
-//   "HQ addr1": "301 N 1ST ST",
-//   "HQ addr2": "",
-//   "HQ city": "Alhambra",
-//   "HQ state": "CA",
-//   "HQ zip": "91801-2454",
-//   "HQ phone": "626-570-5190",
-//   "HQ fax": "626-457-8961",
-//   "County": "Los Angeles County",
-//   "Dept Type": "Mostly career",
-//   "Organization Type": "Local (includes career, combination, and volunteer)",
-//   "Website": "https://www.cityofalhambra.org/fire/mainar.htm",
-//   "Number Of Stations": "4",
-//   "Active Firefighters - Career": "80",
-//   "Active Firefighters - Volunteer": "12",
-//   "Active Firefighters - Paid per Call": "0",
-//   "Non-Firefighting - Civilian": "9",
-//   "Non-Firefighting - Volunteer": "0",
-//   "Primary agency for emergency mgmt": "",
-//   "Latitude": 34.097257,
-//   "Longitude": -118.129606,
-//   "Accuracy Score": 1,
-//   "Accuracy Type": "range_interpolation"
-// }
+export default FormikSearch;
