@@ -25,14 +25,15 @@ const Search = ({
    const orgTypes = [
       {value: "Local", name: "Local"},
       {value: "State", name: "State"},
-      {value: "Federal DOD", name: "Federal (Department of Defense)"},
-      {value: "Federal Exec", name: "Federal (Executive Branch)"},
       {value: "Contract", name: "Contract"},
       {value: "Private", name: "Private"},
+      {value: "Federal DOD", name: "Federal (Department of Defense)"},
+      {value: "Federal Exec", name: "Federal (Executive Branch)"},
       {value: "Other", name: "Other"},
    ]
    
    const firefighterTypes = [
+      "Number Of Stations",
       "Active Firefighters - Career",
       "Active Firefighters - Volunteer",
       "Active Firefighters - Paid per Call",
@@ -64,18 +65,6 @@ const Search = ({
                
                <fieldset className="row">
                   <legend>Location</legend>
-                  {/*<div className="input-field col s6">
-                     <label>
-                        Address 1: 
-                        <Field type="text" name="HQ addr1" />
-                     </label>
-                  </div>
-                  <div className="input-field col s6">
-                     <label>
-                        Address 2: 
-                        <Field type="text" name="HQ addr2" />
-                     </label>
-                  </div>*/}
                   <div className="input-field col s6">
                      <label>
                         City: 
@@ -204,6 +193,7 @@ const Search = ({
 
                <footer>
                   <button 
+                     type="button"
                      className="clear" 
                      onClick={resetForm} >
                      Clear
@@ -234,7 +224,7 @@ const initialValues = {
    "Dept Type": [],
    "Organization Type": [],
    "Website": '',
-   "Number Of Stations": '',
+   "Number Of Stations": {use: false, min:'', max: ''},
    "Active Firefighters - Career": {use: false, min:'', max: ''},
    "Active Firefighters - Volunteer": {use: false, min:'', max: ''},
    "Active Firefighters - Paid per Call": {use: false, min:'', max: ''},

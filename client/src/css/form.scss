@@ -1,9 +1,31 @@
 form {
+   
+   p{
+      font-size: 1em;
+   }
 
    fieldset {
       margin-bottom: 2em;
       border: 1px solid silver;
       padding: 20px;
+      
+      &:first-child{
+         position: relative;
+      }
+      
+      .required-message {
+         position: absolute;
+         top: -0.4em;
+         right: 0px;
+         font-weight: bold;
+         
+         .asterisk{
+            font-size: 1.2em;
+            color: orangered;
+         }
+         
+      }
+      
    }
 
    legend {
@@ -20,14 +42,35 @@ form {
       flex-direction: row;
       justify-content: space-between;
       
-      &.career.radio {
+      &.career.radio, &.agency {
          justify-content: flex-start;
       }
       
+      &.agency {
+         margin-top: 15px;
+         
+         input[type="checkbox"] {
+            margin-right: 10px;
+         }
+         
+      }
+      
+   }
+   
+   .required{
+      position: relative;
+   }
+   
+   .required::before{
+      position: absolute;
+      content: "*";
+      left: -5px;
+      color: orangered;
+      font-weight: bold;
    }
 
    /* Corrections for Materialize CSS */
-   input[type="text"], input[type="number"]{
+   input[type="text"], input[type="number"], input[type="tel"]{
       
       background-color: transparent;
       border: 1px solid white;
@@ -49,6 +92,10 @@ form {
 
    input[type=text]:not(.browser-default):focus:not([readonly])+label {
       color: #9e9e9e;
+   }
+   
+   input[type="checkbox"], input[type="radio"] {
+      margin: 2px 0 0;
    }
    
    .ff-title {
@@ -89,7 +136,10 @@ form {
          
          .vertical {
             
+            display: flex;
             flex-direction: column;
+            flex-wrap: wrap;
+            max-height: 6em;
 
             label {
                justify-content: flex-start;
