@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 const Search = ({
    values,
    setFieldValue,
+   resetForm
 }) => {
    
    const toggleRadioButton = (field, value) => {
@@ -169,14 +170,14 @@ const Search = ({
                                  if (!values[type].use){
                                     values[type].use = true
                                  } else {
-                                    values[type].use = null
+                                    values[type].use = false
                                  }
                                  setFieldValue(type.use, values[type].use)
                               }} />
                            <span>{type}</span>
                         </label>
                         
-                        <div className="min-max-inputs">
+                        <div className={`min-max-inputs ${!values[type].use ? 'disabled' : ''}`}>
                            <label>
                               <span>At Least:</span>
                               <Field 
@@ -201,9 +202,17 @@ const Search = ({
                   
                </fieldset>
 
-               <button className="submit" type="submit">
-                  Search
-               </button>
+               <footer>
+                  <button 
+                     className="clear" 
+                     onClick={resetForm} >
+                     Clear
+                  </button>
+                  <button className="submit" type="submit">
+                     Search
+                  </button>
+               </footer>
+
             </Form>
             
          </section>
@@ -211,30 +220,32 @@ const Search = ({
     );
 }
 
+const initialValues = {
+   "FDID": '',
+   "Fire dept name": '',
+   "HQ addr1": '',
+   "HQ addr2": '',
+   "HQ city": '',
+   "HQ state": '',
+   "HQ zip": '',
+   "HQ phone": '',
+   "HQ fax": '',
+   "County": '',
+   "Dept Type": [],
+   "Organization Type": [],
+   "Website": '',
+   "Number Of Stations": '',
+   "Active Firefighters - Career": {use: false, min:'', max: ''},
+   "Active Firefighters - Volunteer": {use: false, min:'', max: ''},
+   "Active Firefighters - Paid per Call": {use: false, min:'', max: ''},
+   "Non-Firefighting - Civilian": {use: false, min:'', max: ''},
+   "Non-Firefighting - Volunteer": {use: false, min:'', max: ''},
+   "Primary agency for emergency mgmt": '',
+}
+
 const FormikSearch = withFormik({
    mapPropsToValues(){
-      return {
-         "FDID": '',
-         "Fire dept name": '',
-         "HQ addr1": '',
-         "HQ addr2": '',
-         "HQ city": '',
-         "HQ state": '',
-         "HQ zip": '',
-         "HQ phone": '',
-         "HQ fax": '',
-         "County": '',
-         "Dept Type": [],
-         "Organization Type": [],
-         "Website": '',
-         "Number Of Stations": '',
-         "Active Firefighters - Career": {use: null, min:'', max: ''},
-         "Active Firefighters - Volunteer": {use: null, min:'', max: ''},
-         "Active Firefighters - Paid per Call": {use: null, min:'', max: ''},
-         "Non-Firefighting - Civilian": {use: null, min:'', max: ''},
-         "Non-Firefighting - Volunteer": {use: null, min:'', max: ''},
-         "Primary agency for emergency mgmt": '',
-      }
+      return initialValues
    },
    handleSubmit(values){
       console.log(values)
