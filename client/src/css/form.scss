@@ -70,7 +70,7 @@ form {
    }
 
    /* Corrections for Materialize CSS */
-   input[type="text"], input[type="number"], input[type="tel"]{
+   input[type="text"], input[type="number"], input[type="tel"], select{
       
       background-color: transparent;
       border: 1px solid white;
@@ -225,7 +225,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px rgba(0,0,0,0.85) inset !important;
+   box-shadow: 0 0 0 30px rgba(0,0,0,0.85) inset !important;
+   -webkit-box-shadow: 0 0 0 30px rgba(0,0,0,0.85) inset !important;
 }
 
 

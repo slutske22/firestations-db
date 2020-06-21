@@ -1,6 +1,7 @@
 import React from 'react';
-import { withFormik, Form, Field, FieldArray } from 'formik'
+import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import { states } from './states'
 
 const Search = ({
    values,
@@ -80,7 +81,14 @@ const Search = ({
                   <div className="input-field col s6">
                      <label>
                         State: 
-                        <Field type="text" name="HQ state" />
+                        <Field component="select" name="HQ state" placeholder="Choose a State">
+                           <option value="" defaultValue> </option>
+                           {states.map( state =>  
+                              <option key={state.name} value={state.abbreviation}>
+                                 {state.name}
+                              </option>   
+                           )}
+                        </Field>
                      </label>
                   </div>  
                   <div className="input-field col s6">
@@ -125,7 +133,7 @@ const Search = ({
                      <div className="vertical">
                         {orgTypes.map(type =>
                            <label className="radio-name" key={type.name}>
-                              <input 
+                              <Field 
                                  className="radio org-type"
                                  type="checkbox"
                                  name="Organization Type"
@@ -151,37 +159,34 @@ const Search = ({
                   {firefighterTypes.map( type => (
                      <div className="input-field col s6 type-group ff-type" key={type} >
                         <label>
-                           <input 
+                           <Field 
                               type="checkbox" 
                               name={type}
-                              checked={values[type].use}
-                              onChange={ e => {
-                                 if (!values[type].use){
-                                    values[type].use = true
-                                 } else {
-                                    values[type].use = false
+                              onClick={ () => {
+                                 if (values[type] === true){
+                                    setFieldValue(`${type} min`, '') 
+                                    setFieldValue(`${type} max`, '') 
                                  }
-                                 setFieldValue(type.use, values[type].use)
-                              }} />
+                              }}
+                              />
                            <span>{type}</span>
                         </label>
                         
-                        <div className={`min-max-inputs ${!values[type].use ? 'disabled' : ''}`}>
+                        <div className={`min-max-inputs ${!values[type] ? 'disabled' : ''}`}>
                            <label>
                               <span>At Least:</span>
                               <Field 
                                  type="number" 
-                                 name={`${type}.min`}
+                                 name={`${type} min`}
                                  min="0"
-                                 disabled={!values[type].use} />
+                                 disabled={!values[type]} />
                            </label>
                            <label>
                               <span>At Most:</span>
                               <Field 
                                  type="number" 
-                                 name={`${type}.max`}
-                                 max="0"
-                                 disabled={!values[type].use} />
+                                 name={`${type} max`}
+                                 disabled={!values[type]} />
                            </label>
                         </div>
                         
@@ -195,7 +200,11 @@ const Search = ({
                   <button 
                      type="button"
                      className="clear" 
-                     onClick={resetForm} >
+                     onClick={() => {
+                        resetForm()
+                        setFieldValue("Dept Type", [])
+                        setFieldValue("Organization Type", [])
+                     }} >
                      Clear
                   </button>
                   <button className="submit" type="submit">
@@ -216,7 +225,7 @@ const initialValues = {
    "HQ addr1": '',
    "HQ addr2": '',
    "HQ city": '',
-   "HQ state": '',
+   "HQ state": undefined,
    "HQ zip": '',
    "HQ phone": '',
    "HQ fax": '',
@@ -224,12 +233,24 @@ const initialValues = {
    "Dept Type": [],
    "Organization Type": [],
    "Website": '',
-   "Number Of Stations": {use: false, min:'', max: ''},
-   "Active Firefighters - Career": {use: false, min:'', max: ''},
-   "Active Firefighters - Volunteer": {use: false, min:'', max: ''},
-   "Active Firefighters - Paid per Call": {use: false, min:'', max: ''},
-   "Non-Firefighting - Civilian": {use: false, min:'', max: ''},
-   "Non-Firefighting - Volunteer": {use: false, min:'', max: ''},
+   "Number Of Stations": '',
+   "Number Of Stations min": '',
+   "Number Of Stations max": '',
+   "Active Firefighters - Career": '',
+   "Active Firefighters - Career min": '',
+   "Active Firefighters - Career max": '',
+   "Active Firefighters - Volunteer": '',
+   "Active Firefighters - Volunteer min": '',
+   "Active Firefighters - Volunteer max": '',
+   "Active Firefighters - Paid per Call": '',
+   "Active Firefighters - Paid per Call min": '',
+   "Active Firefighters - Paid per Call max": '',
+   "Non-Firefighting - Civilian": '',
+   "Non-Firefighting - Civilian min": '',
+   "Non-Firefighting - Civilian max": '',
+   "Non-Firefighting - Volunteer": '',
+   "Non-Firefighting - Volunteer min": '',
+   "Non-Firefighting - Volunteer max": '',
    "Primary agency for emergency mgmt": '',
 }
 

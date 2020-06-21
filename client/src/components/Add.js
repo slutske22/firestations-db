@@ -173,8 +173,9 @@ const Add = ({
                   {firefighterTypes.map( type => (
                      <div className="input-field col s6 type-group ff-type" key={type} >
                         <label>
-                           <input 
+                           <Field 
                               type="number" 
+                              min="0"
                               name={type}  />
                            <span className="required">{type}</span>
                         </label>

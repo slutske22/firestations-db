@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { IconContext } from "react-icons";
 import { FaTimes } from 'react-icons/fa'
 import Add from './Add'
 import Info from './Info'
