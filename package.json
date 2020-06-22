@@ -18,5 +18,8 @@
    "bugs": {
       "url": "https://github.com/slutske22/firestations-db/issues"
    },
-   "homepage": "https://github.com/slutske22/firestations-db#readme"
+   "homepage": "https://github.com/slutske22/firestations-db#readme",
+   "dependencies": {
+      "react-tooltip": "^4.2.7"
+   }
 }

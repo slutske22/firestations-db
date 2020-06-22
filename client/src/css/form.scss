@@ -287,7 +287,7 @@ form {
       }
    }
 
-   button[type="submit"]{
+   button[type="submit"]:not(.search){
       margin-left: auto;
    }
    
@@ -296,6 +296,31 @@ form {
       margin-left: auto;
       margin-right: 5px;
       color: red;
+   }
+
+
+   .search-type {
+      
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      p {
+         margin: 0;
+      }
+
+      label {
+         display: flex;
+         flex-direction: row;
+         align-items: center;
+         margin-left: 20px;
+         margin-bottom: 0px;
+      }
+
+      input[type="radio"]{
+         margin-right: 5px
+      }
+
    }
    
 }

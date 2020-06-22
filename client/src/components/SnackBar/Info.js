@@ -15,6 +15,9 @@ const Info = () => {
             <p>
                You can filter and search fire stations by clicking on the "Search" button in the lower right corner.  You can also add fire stations to the registry by clicking the "Add" button.
             </p>
+            <p>
+               This page is not connected to the official FEMA registry database.  Changes made here will not be reflected there, and vice versa.  This page is a proof-of-concept project for demonstration purposes.  Adding or editing the dataset is open to the public, so please be considerate when doing so.
+            </p>
          </section>
       </div>
     );

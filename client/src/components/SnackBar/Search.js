@@ -1,9 +1,11 @@
 import React from 'react';
+import { BsQuestionCircle } from 'react-icons/bs'
 import { withFormik, Form, Field } from 'formik'
+import ReactTooltip from 'react-tooltip'
 import * as Yup from 'yup'
 import { states } from './states'
 
-const deptTypes = [
+const deptTypes = [ 
    {value: "Career", name: "Career"},
    {value: "Volunteer", name: "Volunteer"},
    {value: "Mostly volunteer", name: "Mostly Volunteer"},
@@ -202,7 +204,34 @@ const Search = ({
                      }} >
                      Clear
                   </button>
-                  <button className="submit" type="submit">
+                  <div className="search-type">
+                     <p>
+                        Search Type
+                        <BsQuestionCircle />
+                        :
+                     </p>
+                     <label>
+                        <input
+                           type="radio"
+                           name="search_type"
+                           value="and"
+                           checked={values.search_type === "and"}
+                           onChange={() => setFieldValue("search_type", "and")}
+                        />
+                        <span>AND</span>
+                     </label>
+                     <label>
+                        <input
+                           type="radio"
+                           name="search_type"
+                           value="or"
+                           checked={values.search_type === "or"}
+                           onChange={() => setFieldValue("search_type", "or")}
+                        />
+                        <span>OR</span>
+                     </label>
+                  </div>
+                  <button className="submit search" type="submit">
                      Search
                   </button>
                </footer>
@@ -215,6 +244,7 @@ const Search = ({
 }
 
 const initialValues = {
+   "search_type": 'or',
    "FDID": '',
    "Fire dept name": '',
    "HQ addr1": '',

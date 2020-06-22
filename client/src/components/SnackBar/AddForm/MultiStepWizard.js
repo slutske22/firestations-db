@@ -36,7 +36,8 @@ export const MultiStepWizard = ({ children, initialValues, onSubmit }) => {
          initialValues={snapshot}
          onSubmit={handleSubmit}
          validationSchema={step.props.validationSchema}
-         validateOnBlur={false} >
+         validateOnBlur={false}
+         validateOnChange={false} >
          {formik => (
             <Form>
                {React.cloneElement(step, { 
