@@ -42,4 +42,40 @@
 
    }
 
+   @media (max-width: 600px) {
+
+      flex-direction: row;
+      width: 100%;
+      height: 4em;
+
+      .item {
+         border-radius: 0;
+         flex: 1;
+         margin: 0;
+         border-top: 0.5px solid snow;
+         border-right: 0.5px solid snow;
+         background-color: rgba(0,0,0,0.85);
+
+         &:last-child{
+            border-right: none;
+         }
+
+         &.active {
+            .icon {
+               color: #337ab7;
+            }
+         }
+
+         &:last-child{
+            margin-bottom: 0;
+         }
+
+      }
+
+      span {
+         display: none;
+      }
+
+   }
+
 }

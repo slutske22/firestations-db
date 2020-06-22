@@ -14,6 +14,11 @@
 
    }
 
+   @media (max-width: 600px) {
+      padding-bottom: 4em;
+   }
+
+
 }
 
 .SnackBar {
@@ -30,6 +35,20 @@
       position: relative;
       overflow-y: auto;
 
+   }
+
+   @media (max-width: 800px) {
+      .content{
+         width: calc(100% - 200px);
+      }
+   }
+
+   @media (max-width: 600px) {
+      .content{
+         height: 100%;
+         width: 100%;
+         border-radius: 0;
+      }
    }
 
    .close-button {
@@ -64,6 +83,7 @@
 
    .fema-logo {
       width: 50%;
+      min-width: 200px;
       margin: auto;
    }
 

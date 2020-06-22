@@ -57,22 +57,24 @@ export const Step2 = ({values, handleChange, setFieldValue}) => {
       <div className="type-group dept-type">
           <p className="title required">
              Department Type:
-            <ErrorMessage className="error" component="div" name="Dept Type" />
+            <ErrorMessage className="error" component="span" name="Dept Type" />
          </p>
-          {deptTypes.map(type =>
-            <label className="radio-name" key={type.value}>
-                <input 
-                  className="radio dept-type"
-                  type="radio"
-                  name="Dept Type"
-                  value={type.value}
-                  checked={ values["Dept Type"] === type.value }
-                  onChange={ handleChange }
-                  onClick={ () => toggleRadioButton("Dept Type", type.value) }
-                />
-                <span>{type.name}</span>
-            </label>
-          )}
+         <div className="dept-type-group">
+            {deptTypes.map(type =>
+               <label className="radio-name" key={type.value}>
+                  <input 
+                     className="radio dept-type"
+                     type="radio"
+                     name="Dept Type"
+                     value={type.value}
+                     checked={ values["Dept Type"] === type.value }
+                     onChange={ handleChange }
+                     onClick={ () => toggleRadioButton("Dept Type", type.value) }
+                  />
+                  <span>{type.name}</span>
+               </label>
+            )}
+         </div>
       </div>
 
           
@@ -101,7 +103,7 @@ export const Step2 = ({values, handleChange, setFieldValue}) => {
       
       <p className="ff-title">Number of:</p>
       {firefighterTypes.map( type => (
-          <div className="input-field col s6 type-group ff-type" key={type} >
+          <div className="input-field col s6 type-group ff-type add" key={type} >
             <label>
                 <Field 
                   type="number" 

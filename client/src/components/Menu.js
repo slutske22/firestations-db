@@ -18,19 +18,19 @@ const Menu = () => {
          <div 
             className={`item ${snackbar === 'search' ? 'active' : ''}`} 
             onClick={ () => dispatch( setSnackbar('search') ) } >
-            Search
+            <span>Search</span>
             <GoSearch className="icon" />
          </div>
          <div 
             className={`item ${snackbar === 'add' ? 'active' : ''}`} 
             onClick={ () => dispatch( setSnackbar('add') ) } >
-            Add
+            <span>Add</span>
             <RiMapPinAddLine className="icon" />
          </div>
          <div 
             className={`item ${snackbar === 'info' ? 'active' : ''}`} 
             onClick={ () => dispatch( setSnackbar('info') ) } >
-            Information
+            <span>Information</span>
             <BsInfoCircle className="icon" />
          </div>
 

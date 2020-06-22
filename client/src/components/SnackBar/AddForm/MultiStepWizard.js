@@ -36,8 +36,7 @@ export const MultiStepWizard = ({ children, initialValues, onSubmit }) => {
          initialValues={snapshot}
          onSubmit={handleSubmit}
          validationSchema={step.props.validationSchema}
-         validateOnBlur={false}
-         validateOnChange={false}>
+         validateOnBlur={false} >
          {formik => (
             <Form>
                {React.cloneElement(step, { 
@@ -46,18 +45,11 @@ export const MultiStepWizard = ({ children, initialValues, onSubmit }) => {
                   handleChange: formik.handleChange
                })}
                <footer>
-
-                  <div>
-                     {stepNumber > 0 && 
-                        <button onClick={() => previous(formik.values)} type="button">
-                           Back
-                        </button>
-                     }
-                     <button type="button" onClick={formik.resetForm} >
-                        Clear
+                  {stepNumber > 0 && 
+                     <button onClick={() => previous(formik.values)} type="button">
+                        Back
                      </button>
-                  </div>
-                  
+                  }
                   <button type="submit" >
                      {isLastStep ? 'Add' : 'Next'}
                   </button>

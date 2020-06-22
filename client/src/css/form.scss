@@ -69,6 +69,7 @@ form {
    p.required .error {
       position: absolute;
       bottom: -1.3em;
+      left: 0;
    }
    
    .required::before{
@@ -109,7 +110,7 @@ form {
    }
    
    input[type="checkbox"], input[type="radio"] {
-      margin: 2px 0 0;
+      margin: 0;
    }
    
    .ff-title {
@@ -120,6 +121,7 @@ form {
       display: flex;
       flex-direction: row;
       align-items: center;
+      
       
       .title {
          display: inline-block;
@@ -155,6 +157,11 @@ form {
             flex-wrap: wrap;
             max-height: 6em;
 
+            @media (max-width: 750px) and (min-width: 600px),
+            (max-width: 550px) {
+               max-height: 50em;
+            }
+
             label {
                justify-content: flex-start;
             }
@@ -169,13 +176,14 @@ form {
          margin: 0px 0px 5px;
          align-items: center;
          justify-content: space-between;
+         flex-wrap: wrap;
          
          label {
-            width: 100%;
             justify-content: flex-start;
             display: flex;
             flex-direction: row;
             align-items: center;
+            flex: 1 0 240px;
          }
          
          span {
@@ -193,6 +201,12 @@ form {
          .min-max-inputs {
             display: flex;
             flex-direction: row;
+            flex-basis: 50%;
+
+            label {
+               width: 100%;
+               flex: 1 0 140px;
+            }
 
             &.disabled{
                input[type="number"] {
@@ -202,8 +216,28 @@ form {
 
          }
 
+         @media (max-width: 800px){
+            .min-max-inputs{
+               flex-basis: auto;
+               margin-left: auto;
+               margin-right: 10px;
+            }
+         }
+
          .error {
             margin-right: 30%;
+         }
+
+         @media (max-width: 800px){
+            .error {
+               margin-right: 0;
+            }
+         }
+
+         &.add {
+            label {
+               width: 100%;
+            }
          }
 
       }
@@ -212,6 +246,27 @@ form {
          margin-bottom: 10px;
       }
    
+   }
+
+   @media (max-width: 750px) and (min-width: 600px),
+   (max-width: 550px) {
+      div.type-group {
+         align-items: flex-start;
+      }
+   }
+
+   .dept-type-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+   }
+
+   @media (max-width: 750px) and (min-width: 600px),
+      (max-width: 550px) {
+      .dept-type-group {
+         flex-direction: column;
+         align-items: flex-start;
+      }
    }
 
    footer {

@@ -28,7 +28,7 @@ export const Step1 = () => (
       <div className="input-field col s6">
         <label className="required">
             Federal ID: 
-            <ErrorMessage className="error" component="div" name="FDID" />
+            <ErrorMessage className="error" component="span" name="FDID" />
             <Field type="text" name="FDID" />
         </label>
       </div>

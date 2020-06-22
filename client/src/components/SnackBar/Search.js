@@ -96,27 +96,29 @@ const Search = ({
                   
                   <div className="type-group dept-type">
                      <p className="title">Department Type:</p>
-                     {deptTypes.map(type =>
-                        <label className="radio-name" key={type.value}>
-                           <input 
-                              className="radio dept-type"
-                              type="checkbox"
-                              name="Dept Type"
-                              value={type.value}
-                              checked={values["Dept Type"].includes(type.value)}
-                              onChange={ e => {
-                                 if (!values["Dept Type"].includes(type.value)){
-                                    values["Dept Type"].push(type.value)
-                                 } else {
-                                    const idx = values["Dept Type"].indexOf(type.value)
-                                    values["Dept Type"].splice(idx, 1)
-                                 }
-                                 setFieldValue("Dept Type", values["Dept Type"])
-                              }}
-                           />
-                           <span>{type.name}</span>
-                        </label>
-                     )}
+                     <div className="dept-type-group">
+                        {deptTypes.map(type =>
+                           <label className="radio-name" key={type.value}>
+                              <input 
+                                 className="radio dept-type"
+                                 type="checkbox"
+                                 name="Dept Type"
+                                 value={type.value}
+                                 checked={values["Dept Type"].includes(type.value)}
+                                 onChange={ e => {
+                                    if (!values["Dept Type"].includes(type.value)){
+                                       values["Dept Type"].push(type.value)
+                                    } else {
+                                       const idx = values["Dept Type"].indexOf(type.value)
+                                       values["Dept Type"].splice(idx, 1)
+                                    }
+                                    setFieldValue("Dept Type", values["Dept Type"])
+                                 }}
+                              />
+                              <span>{type.name}</span>
+                           </label>
+                        )}
+                     </div>
                   </div>
 
                      
