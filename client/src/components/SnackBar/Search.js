@@ -1,7 +1,7 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { states } from '../states'
+import { states } from './states'
 
 const deptTypes = [
    {value: "Career", name: "Career"},
@@ -67,7 +67,7 @@ const Search = ({
                   <div className="input-field col s6">
                      <label>
                         County: 
-                        <Field type="text" name="County" />
+                        <Field type="text" name="County" autoComplete="off"/>
                      </label>
                   </div>
                   <div className="input-field col s6">

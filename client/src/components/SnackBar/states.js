@@ -44,6 +44,10 @@ export const states = [
    "abbreviation": "GA"
    },
    {
+   "name": "Guam",
+   "abbreviation": "GU"
+   },
+   {
    "name": "Hawaii",
    "abbreviation": "HI"
    },
@@ -139,6 +143,9 @@ export const states = [
    "name": "North Dakota",
    "abbreviation": "ND"
    },
+   { 
+   "name": 'Northern Mariana Islands', 
+   "abbreviation": 'MP'},
    {
    "name": "Ohio",
    "abbreviation": "OH"
@@ -154,6 +161,10 @@ export const states = [
    {
    "name": "Pennsylvania",
    "abbreviation": "PA"
+   },
+   {
+   "name": "Puerto Rico",
+   "abbreviation": "PR"
    },
    {
    "name": "Rhode Island",

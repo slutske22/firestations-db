@@ -45,6 +45,7 @@ form {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: center;
       
       &.career.radio, &.agency {
          justify-content: flex-start;
@@ -63,6 +64,11 @@ form {
    
    .required{
       position: relative;
+   }
+
+   p.required .error {
+      position: absolute;
+      bottom: -1.3em;
    }
    
    .required::before{
@@ -86,6 +92,10 @@ form {
          box-shadow: 0 1px 0 0 #337ab7;
       }
       
+   }
+
+   option {
+      color: black;
    }
 
    input[type=text]:not(.browser-default):focus:not([readonly]){
@@ -161,7 +171,8 @@ form {
          justify-content: space-between;
          
          label {
-            justify-content: flex-end;
+            width: 100%;
+            justify-content: flex-start;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -191,6 +202,10 @@ form {
 
          }
 
+         .error {
+            margin-right: 30%;
+         }
+
       }
       
       .ff-title{
@@ -216,9 +231,17 @@ form {
          color: rgba(0,0,0,0.85)
       }
    }
+
+   button[type="submit"]{
+      margin-left: auto;
+   }
    
    
-   
+   .error {
+      margin-left: auto;
+      margin-right: 5px;
+      color: red;
+   }
    
 }
 
@@ -231,7 +254,6 @@ input:-webkit-autofill:active  {
    box-shadow: 0 0 0 30px rgba(0,0,0,0.85) inset !important;
    -webkit-box-shadow: 0 0 0 30px rgba(0,0,0,0.85) inset !important;
 }
-
 
 /*Change text in autofill textbox*/
 input:-webkit-autofill {
