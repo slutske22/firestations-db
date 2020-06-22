@@ -4,10 +4,10 @@ import { FaTimes } from 'react-icons/fa'
 import Add from './Add'
 import Info from './Info'
 import Search from './Search'
-import { setSnackbar } from '../store/actions/navigationActions'
+import { setSnackbar } from '../../store/actions/navigationActions'
 
 
-import '../css/SnackBar.scss'
+import '../../css/SnackBar.scss'
 
 const menus = {
    add: <Add />,

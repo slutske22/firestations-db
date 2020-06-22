@@ -1,5 +1,5 @@
 import React from 'react';
-import FemaLogo from '../assets/fema-logo-blue_medium.png'
+import FemaLogo from '../../assets/fema-logo-blue_medium.png'
 
 const Info = () => {
    return ( 

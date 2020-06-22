@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import Map from './Map'
 import Menu from './Menu'
-import SnackBar from './SnackBar'
+import SnackBar from './SnackBar/SnackBar'
 
 
 import '../css/index.scss'

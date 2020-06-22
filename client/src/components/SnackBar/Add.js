@@ -1,6 +1,8 @@
 import React from 'react';
 import { withFormik, Form, Field, FieldArray } from 'formik'
 import * as Yup from 'yup'
+import { states } from '../states'
+
 
 const Add = ({
    values,
@@ -98,7 +100,14 @@ const Add = ({
                   <div className="input-field col s6">
                      <label className="required">
                         State: 
-                        <Field type="text" name="HQ state" />
+                        <Field component="select" name="HQ state" placeholder="Choose a State">
+                           <option value="" defaultValue> </option>
+                           {states.map( state =>  
+                              <option key={state.name} value={state.abbreviation}>
+                                 {state.name}
+                              </option>   
+                           )}
+                        </Field>
                      </label>
                   </div>  
                   <div className="input-field col s6">

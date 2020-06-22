@@ -12,6 +12,10 @@ form {
       &:first-child{
          position: relative;
       }
+
+      &:last-of-type{
+         margin-bottom: 20px;
+      }
       
       .required-message {
          position: absolute;
@@ -196,7 +200,6 @@ form {
    }
 
    footer {
-      margin-bottom: 20px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;

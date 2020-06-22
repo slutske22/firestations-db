@@ -1,46 +1,38 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { states } from './states'
+import { states } from '../states'
+
+const deptTypes = [
+   {value: "Career", name: "Career"},
+   {value: "Volunteer", name: "Volunteer"},
+   {value: "Mostly volunteer", name: "Mostly Volunteer"},
+]
+
+const orgTypes = [
+   {value: "Local", name: "Local"},
+   {value: "State", name: "State"},
+   {value: "Contract", name: "Contract"},
+   {value: "Private", name: "Private"},
+   {value: "Federal DOD", name: "Federal (Department of Defense)"},
+   {value: "Federal Exec", name: "Federal (Executive Branch)"},
+   {value: "Other", name: "Other"},
+]
+
+const firefighterTypes = [
+   "Number Of Stations",
+   "Active Firefighters - Career",
+   "Active Firefighters - Volunteer",
+   "Active Firefighters - Paid per Call",
+   "Non-Firefighting - Civilian",
+   "Non-Firefighting - Volunteer",
+]
 
 const Search = ({
    values,
    setFieldValue,
    resetForm
 }) => {
-   
-   const toggleRadioButton = (field, value) => {
-      if (values[field] !== value){
-         setFieldValue(field, "value")
-      } else {
-         setFieldValue(field, '')
-      }
-   }
-   
-   const deptTypes = [
-      {value: "Career", name: "Career"},
-      {value: "Volunteer", name: "Volunteer"},
-      {value: "Mostly volunteer", name: "Mostly Volunteer"},
-   ]
-   
-   const orgTypes = [
-      {value: "Local", name: "Local"},
-      {value: "State", name: "State"},
-      {value: "Contract", name: "Contract"},
-      {value: "Private", name: "Private"},
-      {value: "Federal DOD", name: "Federal (Department of Defense)"},
-      {value: "Federal Exec", name: "Federal (Executive Branch)"},
-      {value: "Other", name: "Other"},
-   ]
-   
-   const firefighterTypes = [
-      "Number Of Stations",
-      "Active Firefighters - Career",
-      "Active Firefighters - Volunteer",
-      "Active Firefighters - Paid per Call",
-      "Non-Firefighting - Civilian",
-      "Non-Firefighting - Volunteer",
-   ]
    
    return ( 
       <div className="Search">
@@ -204,6 +196,7 @@ const Search = ({
                         resetForm()
                         setFieldValue("Dept Type", [])
                         setFieldValue("Organization Type", [])
+                        setFieldValue("HQ state", '')
                      }} >
                      Clear
                   </button>
