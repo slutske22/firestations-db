@@ -24,12 +24,10 @@ const FireStations = () => {
    const popupLeafletElements = {}
 
    const handlePopupOpen = id => {
-      console.log(id)
       dispatch( setOpenPopup(id) )
    }
 
    const handlePopupClose = () => {
-      console.log('closed popup')
       dispatch( setOpenPopup(null) )
    }
 
@@ -40,7 +38,6 @@ const FireStations = () => {
    // if that station goes out of the map bounds)
    useEffect( () => {
       if (popupLeafletElements[openPopupId]){
-         console.log('ref', popupLeafletElements[openPopupId])
          popupLeafletElements[openPopupId].leafletElement._source.openPopup()
       }
    }, [stations, openPopupId] )
@@ -55,6 +52,7 @@ const FireStations = () => {
                   maxWidth={550} 
                   onOpen={ () => handlePopupOpen(station._id) } 
                   onClose={ handlePopupClose }
+                  autoPan={false}
                   ref={ref => popupLeafletElements[station._id] = ref} >
 
                   <div className="station-popup-content">
