@@ -1,10 +1,11 @@
 import { C } from "../actions/mapActions"
 
 export const initialState = {
-   reference: undefined,
+   mapRef: undefined,
    center: [35, -116],
    zoom: 9,
    zoomThreshhold: 8,
+   bounds: undefined,
    stations: [],
    openPopupId: null
 }
@@ -17,7 +18,7 @@ export function mapReducers(state = initialState, action){
       case C.SET_MAP_REFERENCE:
          return {
             ...state,
-            reference: action.reference
+            mapRef: action.mapRef
          }
 
       case C.SET_MAP_CENTER:

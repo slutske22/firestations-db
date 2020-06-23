@@ -7,8 +7,8 @@ const Station = mongoose.model('Station', StationSchema, 'FEMA_stations')
 
 export const getStations = (req, res) => {
 
-   // let search = req.body
    const { north, south, east, west } = req.body.coords
+   const { searchTerms } = req.body
 
    const query = {
       Latitude: { $gt: south, $lt: north },

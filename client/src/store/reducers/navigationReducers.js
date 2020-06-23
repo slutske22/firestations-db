@@ -1,7 +1,8 @@
 import { C } from '../actions/navigationActions'
 
 const initialState = {
-   snackbar: 'info'
+   snackbar: 'info',
+   currentSearchTerms: {}
 }
 
 export function navigationReducers(state = initialState, action){
@@ -12,6 +13,12 @@ export function navigationReducers(state = initialState, action){
          return {
             ...state,
             snackbar: action.snackbar
+         }
+
+      case C.SAVE_SEARCH_TERMS:
+         return {
+            ...state,
+            currentSearchTerms: action.searchTerms
          }
 
       default:

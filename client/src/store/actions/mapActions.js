@@ -9,9 +9,9 @@ export const C = {
 
 }
 
-export const setMapReference = reference => ({
+export const setMapReference = mapRef => ({
    type: C.SET_MAP_REFERENCE,
-   reference
+   mapRef
 })
 
 export const setMapCenter = center => ({
@@ -38,3 +38,39 @@ export const setOpenPopup = id => ({
    type: C.SET_OPEN_POPUP,
    id
 })
+
+export const getStations = search => {
+
+   const { mapRef, zoomThreshhold, bounds } = store.getState().map
+
+   const boundsToUse = search.bounds || store.getState().map.bounds
+
+   const query = {
+      searchTerms: search.searchTerms || store.getState().navigation.currentSearchTerms,
+      coords: {
+         south: boundsToUse.getSouth(),
+         north: boundsToUse.getNorth(),
+         east: boundsToUse.getEast(),
+         west: boundsToUse.getWest()
+      }
+   }
+
+   console.log('Call:', query)
+
+   fetch('/api/getstations', {
+      method: "POST",
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(query)
+   })
+   .then( res => res.json() )
+   .then( res => {
+      console.log('Response:', res)
+      setStations(res)
+      dispatch( setFireStations(res) )
+   })
+
+
+
+}

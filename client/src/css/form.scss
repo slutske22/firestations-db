@@ -40,6 +40,26 @@ form {
       margin: 0px;
    }
 
+   @media (max-width: 700px){
+
+      fieldset {
+         border: none;
+      }
+
+      legend {
+         margin-left: 0;
+         padding: 0;
+         width: 100%;
+         border-bottom: 1px solid snow;
+      }
+
+      .required-message {
+         top: 1em;
+         right: 20px;
+      }
+
+   }
+
    label {
       font-weight: 400;
       display: flex;
@@ -157,7 +177,7 @@ form {
             flex-wrap: wrap;
             max-height: 6em;
 
-            @media (max-width: 750px) and (min-width: 600px),
+            @media (max-width: 750px) and (min-width: 700px),
             (max-width: 550px) {
                max-height: 50em;
             }
@@ -216,7 +236,7 @@ form {
 
          }
 
-         @media (max-width: 800px){
+         @media (max-width: 900px){
             .min-max-inputs{
                flex-basis: auto;
                margin-left: auto;
@@ -228,7 +248,7 @@ form {
             margin-right: 30%;
          }
 
-         @media (max-width: 800px){
+         @media (max-width: 900px){
             .error {
                margin-right: 0;
             }
@@ -248,7 +268,7 @@ form {
    
    }
 
-   @media (max-width: 750px) and (min-width: 600px),
+   @media (max-width: 750px) and (min-width: 700px),
    (max-width: 550px) {
       div.type-group {
          align-items: flex-start;
@@ -261,7 +281,7 @@ form {
       align-items: center;
    }
 
-   @media (max-width: 750px) and (min-width: 600px),
+   @media (max-width: 750px) and (min-width: 700px),
       (max-width: 550px) {
       .dept-type-group {
          flex-direction: column;
@@ -299,10 +319,11 @@ form {
    }
 
 
-   .search-type {
+   .search-type, .labels {
       
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
 
       p {
@@ -315,6 +336,23 @@ form {
          align-items: center;
          margin-left: 20px;
          margin-bottom: 0px;
+      }
+
+      @media (max-width: 500px){
+         p, .labels{
+            flex: 1 0 200px;
+            text-align: center;
+            justify-content: center;
+         }
+         label:first-of-type {
+            margin-left: 0;
+         }
+      }
+
+      @media (max-width: 500px){
+         p, .labels{
+            flex: 1 0 120px;
+         }
       }
 
       input[type="radio"]{

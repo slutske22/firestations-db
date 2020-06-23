@@ -3,7 +3,12 @@ import { BsQuestionCircle } from 'react-icons/bs'
 import { withFormik, Form, Field } from 'formik'
 import ReactTooltip from 'react-tooltip'
 import * as Yup from 'yup'
+
 import { states } from './states'
+
+import store from '../../store/store'
+import { saveSearchTerms } from '../../store/actions/navigationActions'
+import { getStations } from '../../store/actions/mapActions'
 
 const deptTypes = [ 
    {value: "Career", name: "Career"},
@@ -213,26 +218,28 @@ const Search = ({
                         </ReactTooltip>
                         :
                      </p>
-                     <label>
-                        <input
-                           type="radio"
-                           name="search_type"
-                           value="and"
-                           checked={values.search_type === "and"}
-                           onChange={() => setFieldValue("search_type", "and")}
-                        />
-                        <span>AND</span>
-                     </label>
-                     <label>
-                        <input
-                           type="radio"
-                           name="search_type"
-                           value="or"
-                           checked={values.search_type === "or"}
-                           onChange={() => setFieldValue("search_type", "or")}
-                        />
-                        <span>OR</span>
-                     </label>
+                     <div className="labels">
+                        <label>
+                           <input
+                              type="radio"
+                              name="search_type"
+                              value="and"
+                              checked={values.search_type === "and"}
+                              onChange={() => setFieldValue("search_type", "and")}
+                           />
+                           <span>AND</span>
+                        </label>
+                        <label>
+                           <input
+                              type="radio"
+                              name="search_type"
+                              value="or"
+                              checked={values.search_type === "or"}
+                              onChange={() => setFieldValue("search_type", "or")}
+                           />
+                           <span>OR</span>
+                        </label>
+                     </div>
                   </div>
                   <button className="submit search" type="submit">
                      Search
@@ -287,7 +294,8 @@ const FormikSearch = withFormik({
       return initialValues
    },
    handleSubmit(values){
-      console.log(values)
+      store.dispatch( saveSearchTerms(values) )
+      getStations({ searchTerms: values })
    },
    validationSchema: Yup.object().shape({
 

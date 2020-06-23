@@ -10,7 +10,7 @@ function find (name, query, cb) {
 const routes = app => {
 
    // Working:
-   app.route('/api/findstations')
+   app.route('/api/findstationswithfind')
       .post( (req, res) => {
 
          find("FEMA_stations", req.body, (err, docs) => {
@@ -22,9 +22,8 @@ const routes = app => {
       })
 
 
-
       // Working:
-      app.route('/api/stationtest')
+      app.route('/api/getstations')
          .post(getStations)
 
 }

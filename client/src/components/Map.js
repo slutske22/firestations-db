@@ -34,7 +34,7 @@ const Map = () => {
 
       if (zoom > zoomThreshhold){
 
-         fetch('/api/stationtest', {
+         fetch('/api/getstations', {
             method: "POST",
             headers: {
                'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const Map = () => {
          })
          .then( res => res.json() )
          .then( res => {
-            console.log(res)
+            console.log('Response:', res)
             setStations(res)
             dispatch( setFireStations(res) )
          })
