@@ -207,7 +207,10 @@ const Search = ({
                   <div className="search-type">
                      <p>
                         Search Type
-                        <BsQuestionCircle />
+                        <BsQuestionCircle data-tip data-for='searchtype' />
+                        <ReactTooltip id="searchtype" effect='solid' border borderColor='snow' backgroundColor="rgba(0,0,0,0.975)" className="tooltip">
+                           <p>Search Type determines whether to include results that match <i>any</i> of your search terms (OR), or to include only results that match <i>all</i> of your search term (AND).</p>
+                        </ReactTooltip>
                         :
                      </p>
                      <label>
