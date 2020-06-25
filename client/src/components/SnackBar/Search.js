@@ -223,9 +223,9 @@ const Search = ({
                            <input
                               type="radio"
                               name="search_type"
-                              value="and"
-                              checked={values.search_type === "and"}
-                              onChange={() => setFieldValue("search_type", "and")}
+                              value="$and"
+                              checked={values.search_type === "$and"}
+                              onChange={() => setFieldValue("search_type", "$and")}
                            />
                            <span>AND</span>
                         </label>
@@ -233,9 +233,9 @@ const Search = ({
                            <input
                               type="radio"
                               name="search_type"
-                              value="or"
-                              checked={values.search_type === "or"}
-                              onChange={() => setFieldValue("search_type", "or")}
+                              value="$or"
+                              checked={values.search_type === "$or"}
+                              onChange={() => setFieldValue("search_type", "$or")}
                            />
                            <span>OR</span>
                         </label>
@@ -254,20 +254,15 @@ const Search = ({
 }
 
 const initialValues = {
-   "search_type": 'or',
+   "search_type": '$or',
    "FDID": '',
    "Fire dept name": '',
-   "HQ addr1": '',
-   "HQ addr2": '',
    "HQ city": '',
-   "HQ state": undefined,
+   "HQ state": '',
    "HQ zip": '',
-   "HQ phone": '',
-   "HQ fax": '',
    "County": '',
    "Dept Type": [],
    "Organization Type": [],
-   "Website": '',
    "Number Of Stations": '',
    "Number Of Stations min": '',
    "Number Of Stations max": '',
@@ -286,7 +281,6 @@ const initialValues = {
    "Non-Firefighting - Volunteer": '',
    "Non-Firefighting - Volunteer min": '',
    "Non-Firefighting - Volunteer max": '',
-   "Primary agency for emergency mgmt": '',
 }
 
 const FormikSearch = withFormik({

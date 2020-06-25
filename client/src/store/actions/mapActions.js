@@ -46,7 +46,7 @@ export const getStations = search => {
    const boundsToUse = search.bounds || store.getState().map.bounds
 
    const query = {
-      searchTerms: search.searchTerms || store.getState().navigation.currentSearchTerms,
+      searchTerms: search.searchTerms || store.getState().nav.currentSearchTerms,
       coords: {
          south: boundsToUse.getSouth(),
          north: boundsToUse.getNorth(),
@@ -67,8 +67,7 @@ export const getStations = search => {
    .then( res => res.json() )
    .then( res => {
       console.log('Response:', res)
-      setStations(res)
-      dispatch( setFireStations(res) )
+      store.dispatch( setFireStations(res) )
    })
 
 

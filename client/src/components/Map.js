@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setMapReference, setMapZoom, setMapBounds, setFireStations } from '../store/actions/mapActions'
+import { setMapReference, setMapZoom, setMapBounds, getStations as callForStations, setFireStations } from '../store/actions/mapActions'
 import { initialState } from '../store/reducers/mapReducers'
 
 import FireStations from './FireStations'
@@ -34,29 +34,31 @@ const Map = () => {
 
       if (zoom > zoomThreshhold){
 
-         fetch('/api/getstations', {
-            method: "POST",
-            headers: {
-               'Content-Type': 'application/json'
-               // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({
-               message: "this is a test",
-               coords: {
-                  south: bounds.getSouth(),
-                  north: bounds.getNorth(),
-                  east: bounds.getEast(),
-                  west: bounds.getWest()
-               },
-               "HQ city": "San Diego"
-            })
-         })
-         .then( res => res.json() )
-         .then( res => {
-            console.log('Response:', res)
-            setStations(res)
-            dispatch( setFireStations(res) )
-         })
+         callForStations({ bounds })
+
+         // fetch('/api/getstations', {
+         //    method: "POST",
+         //    headers: {
+         //       'Content-Type': 'application/json'
+         //       // 'Content-Type': 'application/x-www-form-urlencoded',
+         //    },
+         //    body: JSON.stringify({
+         //       message: "this is a test",
+         //       coords: {
+         //          south: bounds.getSouth(),
+         //          north: bounds.getNorth(),
+         //          east: bounds.getEast(),
+         //          west: bounds.getWest()
+         //       },
+         //       "HQ city": "San Diego"
+         //    })
+         // })
+         // .then( res => res.json() )
+         // .then( res => {
+         //    console.log('Response:', res)
+         //    setStations(res)
+         //    dispatch( setFireStations(res) )
+         // })
 
       }
 
