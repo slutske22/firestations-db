@@ -75,7 +75,7 @@ export const getStations = (req, res) => {
       for (var key in searchShape.simpleInputs) {
          if (searchTerms[key] !== "") {
             query[search_type].push(
-               { [key]: searchTerms[key] }
+               { [key]: searchTerms[key].replace(/ +/g, ' ') } // trim extra spaces if needed
             ) 
          }
       }
@@ -83,15 +83,15 @@ export const getStations = (req, res) => {
       // Get array inputs
       for (var key in searchShape.arrays) {
          console.log(key)
-         // if (searchTerms[key].length > 0){
-         //    const group = { '$or': [] }
-         //    searchTerms[key].forEach( item => {
-         //       group.$or.push({
-         //          [key]: searchTerms[key]
-         //       })
-         //    })
-         //    query[search_type].push(group)
-         // }
+         if (searchTerms[key].length > 0){
+            const group = { '$or': [] }
+            searchTerms[key].forEach( item => {
+               group.$or.push({
+                  [key]: item
+               })
+            })
+            query[search_type].push(group)
+         }
       }
 
    } // if (searchTerms) end
@@ -99,14 +99,10 @@ export const getStations = (req, res) => {
 
    // Apply LatLng bounds
    
-   console.log('query \n', query)
-
-   Station.find(query, (err, Station) => {
-      if (err) {
-         res.send(err)
-      }
-      // console.log('Station', Station)
-      res.json(Station)
-   })
+   console.log('query \n', JSON.stringify(query, null, 2))
+   
+   Station.find(query).collation({ locale: 'en_US', strength: 2 })
+      .then( docs => res.json(docs) )
+      .catch( err => res.send(err) )
 
 }

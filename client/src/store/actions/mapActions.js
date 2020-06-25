@@ -1,3 +1,5 @@
+import { setSnackbar } from './navigationActions'
+
 export const C = {
 
    SET_MAP_REFERENCE: "SET_MAP_REFERENCE",
@@ -68,6 +70,10 @@ export const getStations = search => {
    .then( res => {
       console.log('Response:', res)
       store.dispatch( setFireStations(res) )
+      // if getStations called from a new search, close the snackbar
+      if (search.searchTerms){
+         store.dispatch( setSnackbar(null) )
+      }
    })
 
 

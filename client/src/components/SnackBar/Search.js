@@ -17,12 +17,12 @@ const deptTypes = [
 ]
 
 const orgTypes = [
-   {value: "Local", name: "Local"},
-   {value: "State", name: "State"},
-   {value: "Contract", name: "Contract"},
-   {value: "Private", name: "Private"},
-   {value: "Federal DOD", name: "Federal (Department of Defense)"},
-   {value: "Federal Exec", name: "Federal (Executive Branch)"},
+   {value: "Local (includes career, combination, and volunteer)", name: "Local"},
+   {value: "State government", name: "State"},
+   {value: "Contract fire department", name: "Contract"},
+   {value: "Private or industrial fire  brigade", name: "Private"},
+   {value: "Federal government (Department of Defense)", name: "Federal (Department of Defense)"},
+   {value: "Federal government (Executive branch)", name: "Federal (Executive Branch)"},
    {value: "Other", name: "Other"},
 ]
 

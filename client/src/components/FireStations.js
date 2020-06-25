@@ -47,6 +47,8 @@ const FireStations = () => {
       <>
          {stations.map( station => {
 
+            console.log('stations.length', stations.length)
+
             const PopupWithDetails = () => (
                <Popup 
                   maxWidth={550} 
@@ -78,27 +80,31 @@ const FireStations = () => {
 
             )
 
-            if (zoom < 13) {
-               return (
-                  <CircleMarker 
-                     center={[station.Latitude, station.Longitude]}
-                     radius={zoom < 10 ? 2 : 5}
-                     fillColor='darkred' 
-                     color='darkred' 
-                     weight={1} 
-                     fillOpacity={0.5} >
-                     <PopupWithDetails />
-                  </CircleMarker>
-               )
-            } else {
-               return (
-                  <Marker
-                     icon={redIcon}
-                     position={[station.Latitude, station.Longitude]} >
-                     <PopupWithDetails />
-                  </Marker>
-               )
+            if (station.Latitude && station.Longitude) {
+               if (zoom > 13 || stations.length < 10) {
+                  return (
+                     <Marker
+                        icon={redIcon}
+                        position={[station.Latitude, station.Longitude]} >
+                        <PopupWithDetails />
+                     </Marker>
+                  )
+               } else {
+                  return (
+                     <CircleMarker 
+                        center={[station.Latitude, station.Longitude]}
+                        radius={zoom < 10 ? 2 : 5}
+                        fillColor='darkred' 
+                        color='darkred' 
+                        weight={1} 
+                        fillOpacity={0.5} >
+                        <PopupWithDetails />
+                     </CircleMarker>
+                  )
+               }
             }
+
+
          })}
       </>
    

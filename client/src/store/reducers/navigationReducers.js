@@ -2,7 +2,7 @@ import { C } from '../actions/navigationActions'
 
 const initialState = {
    snackbar: 'info',
-   currentSearchTerms: {}
+   currentSearchTerms: undefined
 }
 
 export function navigationReducers(state = initialState, action){
