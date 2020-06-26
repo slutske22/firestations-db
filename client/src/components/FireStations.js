@@ -47,8 +47,6 @@ const FireStations = () => {
       <>
          {stations.map( station => {
 
-            console.log('stations.length', stations.length)
-
             const PopupWithDetails = () => (
                <Popup 
                   maxWidth={550} 
