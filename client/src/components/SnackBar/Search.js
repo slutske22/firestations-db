@@ -289,7 +289,7 @@ const FormikSearch = withFormik({
    },
    handleSubmit(values){
       store.dispatch( saveSearchTerms(values) )
-      getStations({ searchTerms: values })
+      getStations({ searchTerms: values, bounds: "ignore", newSearch: true })
    },
    validationSchema: Yup.object().shape({
 

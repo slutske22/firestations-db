@@ -44,27 +44,23 @@ const searchShape = {
 
 export const getStations = (req, res) => {
 
-   const { searchTerms, coords: { north, south, east, west } } = req.body
+   const { searchTerms, newSearch } = req.body
+   let north, south, east, west;
+   if (req.body.coords) {
+      north = req.body.coords.north
+      south = req.body.coords.south
+      east = req.body.coords.east
+      west = req.body.coords.west
+   }
    const search_type = searchTerms ? searchTerms.search_type || "$or" : "$or"
 
    console.log('searchTerms \n', searchTerms)
    // console.log('"search_type" \n', search_type)
 
+   // query variable represents part of query coming from search form
    // start query as object with either '$or' or '$and' property, which is an empty array
    const query = {}
    query[search_type] = []
-
-   query[search_type].push({
-      $and: [
-         { Latitude: { $gt: south, $lt: north } },
-         { Longitude: { $gt: west, $lt: east } }
-      ]      
-   })
-
-   // const query = {
-   //    Latitude: { $gt: south, $lt: north },
-   //    Longitude: { $gt: west, $lt: east }
-   // }
 
 
    // ----- Build Query from Search Terms coming in from req.body -------- //
@@ -95,14 +91,38 @@ export const getStations = (req, res) => {
       }
 
    } // if (searchTerms) end
+
+   // Write query which is combination of bounds (if they exist), and searchTerms (if they exist)
+   var totalQuery = {
+      $and: []
+   }
+
+   if (req.body.coords){
+      totalQuery.$and.push(
+         {
+            $and: [
+               { Latitude: { $gt: south, $lt: north } },
+               { Longitude: { $gt: west, $lt: east } }
+            ]
+         }
+      )
+   }
+   if (searchTerms){
+      totalQuery.$and.push(
+         query
+      )
+   }
    
 
    // Apply LatLng bounds
    
-   console.log('query \n', JSON.stringify(query, null, 2))
+   console.log('totalQuery \n', JSON.stringify(totalQuery, null, 2))
    
-   Station.find(query).collation({ locale: 'en_US', strength: 2 })
-      .then( docs => res.json(docs) )
+   Station.find(totalQuery).collation({ locale: 'en_US', strength: 2 })
+      .then( docs => res.json({
+         stations: docs,
+         fitMapToResults: newSearch
+      }))
       .catch( err => res.send(err) )
 
 }
