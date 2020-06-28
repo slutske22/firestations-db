@@ -23,6 +23,13 @@ export function navigationReducers(state = initialState, action){
             currentFilter: action.currentFilter
          }
 
+      case C.CLEAR_SEARCH_TERMS:
+         return {
+            ...state,
+            currentSearchTerms: action.searchTerms,
+            currentFilter: action.currentFilter
+         }
+
       default:
          return state
 

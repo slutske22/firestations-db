@@ -1,7 +1,8 @@
 export const C = {
 
    SET_SNACKBAR: "SET_SNACKBAR",
-   SAVE_SEARCH_TERMS: "SAVE_SEARCH_TERMS"
+   SAVE_SEARCH_TERMS: "SAVE_SEARCH_TERMS",
+   CLEAR_SEARCH_TERMS: "CLEAR_SEARCH_TERMS"
 
 }
 
@@ -41,3 +42,10 @@ export const saveSearchTerms = searchTerms => {
       currentFilter
    }
 }
+
+
+export const clearSearchTerms = () => ({
+   type: C.CLEAR_SEARCH_TERMS,
+   searchTerms: undefined,
+   currentFilter: undefined
+})

@@ -50,7 +50,9 @@ export const getStations = search => {
    const boundsToUse = search.bounds || store.getState().map.bounds
 
    const query = {
-      searchTerms: search.searchTerms || store.getState().nav.currentSearchTerms,
+      searchTerms: search.searchTerms !== "none" 
+         ? search.searchTerms || store.getState().nav.currentSearchTerms
+         : null,
       coords: search.bounds !== "ignore" 
       ? {
          south: boundsToUse.getSouth(),
