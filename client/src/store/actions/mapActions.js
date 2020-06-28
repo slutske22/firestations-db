@@ -94,7 +94,11 @@ export const fitMapToResults = results => {
 
    const { mapRef } = store.getState().map
 
-   const latlngs = results.map( station => L.marker([station.Latitude, station.Longitude]) )
+   const latlngs = results.map( station => {
+      if (station.Latitude && station.Longitude){
+         return L.marker([station.Latitude, station.Longitude])
+      }
+   }).filter( point => point )
    console.log('latlngs', latlngs)
    const group = L.featureGroup(latlngs)
 
