@@ -75,7 +75,7 @@ export const getStations = (req, res) => {
       for (var key in searchShape.simpleInputs) {
          if (searchTerms[key] !== "") {
             query[search_type].push(
-               { [key]: searchTerms[key].replace(/ +/g, ' ') } // trim extra spaces if needed
+               { [key]: searchTerms[key].toString().replace(/ +/g, ' ') } // trim extra spaces if needed
             ) 
          }
       }

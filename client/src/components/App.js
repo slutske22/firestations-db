@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import Map from './Map'
 import Menu from './Menu'
 import SnackBar from './SnackBar/SnackBar'
-import SearchHUD from './SearchHUD'
+import ActiveFilter from './ActiveFilter'
 
 
 import '../css/index.scss'
@@ -19,7 +19,7 @@ const App = () => {
          <Map />
          <Menu />
          {snackbar && <SnackBar />}
-         <SearchHUD />
+         <ActiveFilter />
       </div>
    )
 
