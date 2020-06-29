@@ -6,6 +6,7 @@ export const C = {
    SET_MAP_REFERENCE: "SET_MAP_REFERENCE",
    SET_MAP_CENTER: "SET_MAP_CENTER",
    SET_MAP_ZOOM: "SET_MAP_ZOOM",
+   SEt_ZOOM_THRESHHOLD: "SEt_ZOOM_THRESHHOLD",
    SET_MAP_BOUNDS: "SET_MAP_BOUNDS",
    SET_FIRESTATIONS: "SET_FIRESTATIONS",
    SET_OPEN_POPUP: "SET_OPEN_POPUP",
@@ -28,6 +29,11 @@ export const setMapZoom = zoom => ({
    zoom
 })
 
+export const setZoomThreshhold = zoom => ({
+   type: C.SEt_ZOOM_THRESHHOLD,
+   zoom
+})
+
 export const setMapBounds = bounds => ({
    type: C.SET_MAP_BOUNDS,
    bounds
@@ -44,8 +50,6 @@ export const setOpenPopup = id => ({
 })
 
 export const getStations = search => {
-
-   const { mapRef, zoomThreshhold, bounds } = store.getState().map
 
    const boundsToUse = search.bounds || store.getState().map.bounds
 
@@ -77,15 +81,25 @@ export const getStations = search => {
    .then( res => {
 
       console.log('Response:', res)
-      if (res.fitMapToResults){
-         fitMapToResults(res.stations)
-      }
-      store.dispatch( setFireStations(res.stations) )
 
-      // if getStations called from a new search, close the snackbar
-      if (search.searchTerms){
-         store.dispatch( setSnackbar(null) )
+      if (res.stations.length > 500){
+         store.dispatch( setSnackbar('warning') )
+      } else {
+
+         if (res.fitMapToResults){
+            fitMapToResults(res.stations)
+         }
+         store.dispatch( setFireStations(res.stations) )
+
+         // if getStations called from a new search, close the snackbar
+         if (search.searchTerms){
+            store.dispatch( setSnackbar(null) )
+         }
+
       }
+
+
+
    })
 
 }

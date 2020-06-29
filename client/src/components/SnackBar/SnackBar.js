@@ -1,9 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaTimes } from 'react-icons/fa'
+
 import AddForm from './AddForm/AddForm'
 import Info from './Info'
 import Search from './Search'
+import Warning from './Warning'
+
 import { setSnackbar } from '../../store/actions/navigationActions'
 
 
@@ -12,7 +15,8 @@ import '../../css/SnackBar.scss'
 const menus = {
    add: <AddForm />,
    info: <Info />,
-   search: <Search />
+   search: <Search />,
+   warning: <Warning />
 }
 
 const SnackBar = () => {

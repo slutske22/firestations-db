@@ -88,4 +88,16 @@
       margin: auto;
    }
 
+   button {
+      background-color: transparent;
+      border: 1px solid snow;
+      padding: 10px;
+      text-transform: uppercase;
+
+      &:active {
+         background-color: snow;
+         color: rgba(0,0,0,0.85)
+      }
+   }
+
 }

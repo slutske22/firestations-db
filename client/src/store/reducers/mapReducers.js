@@ -33,6 +33,12 @@ export function mapReducers(state = initialState, action){
             zoom: action.zoom
          }
 
+      case C.SEt_ZOOM_THRESHHOLD:
+         return {
+            ...state,
+            zoomThreshhold: action.zoom
+         }
+
       case C.SET_MAP_BOUNDS:
          return {
             ...state,
