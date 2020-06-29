@@ -76,6 +76,11 @@ export const getStations = (req, res) => {
          }
       }
 
+      // Only good accuracy scores
+      query[search_type].push(
+         { "Accuracy Score": { $gt: 0.5 } }
+      )
+
       // Get array inputs
       for (var key in searchShape.arrays) {
          console.log(key)

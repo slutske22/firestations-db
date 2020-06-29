@@ -254,7 +254,7 @@ const Search = ({
 }
 
 const initialValues = {
-   "search_type": '$or',
+   "search_type": '$and',
    "FDID": '',
    "Fire dept name": '',
    "HQ city": '',
