@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { Form, Formik } from "formik";
 
+import { geocodeStation } from '../../../store/actions/mapActions' 
+
 export const MultiStepWizard = ({ children, initialValues, onSubmit }) => {
 
    const [stepNumber, setStepNumber] = useState(0)
@@ -27,7 +29,7 @@ export const MultiStepWizard = ({ children, initialValues, onSubmit }) => {
       if (!isLastStep){
          next(values)
       } else {
-         console.log(values)
+         geocodeStation(values)
       }
    }
 

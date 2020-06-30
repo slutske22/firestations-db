@@ -140,3 +140,36 @@ export const fitMapToResults = results => {
    mapRef.fitBounds(group.getBounds(), {padding: [40, 40]})
 
 }
+
+
+export const addStation = values => {
+
+   // geocode address
+
+   fetch('/api/addstation', {
+      method: "POST",
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+   })
+
+}
+
+export const geocodeStation = values => {
+
+   console.log('values in geocodeStation', values)
+
+   fetch('/api/geocodestation', {
+      method: "POST",
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+   })
+      .then( res => res.json() )
+      .then( res => console.log(res) )
+      .catch( err => console.error(err) )
+
+
+}

@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
-import { StationSchema } from './stationModel'
+const Geocodio = require('geocodio-library-node');
+const StationSchema =  require('./stationModel')
 
 const Station = mongoose.model('Station', StationSchema, 'FEMA_stations')
+const geocodio_api_key = '55fb5d6a4dee5cf4c25aaf48ea4528ad28acbb5'
+
+
 
 // Shape of search object coming from front end:
 const searchShape = {
@@ -129,5 +133,32 @@ export const getStations = (req, res) => {
          fitMapToResults: newSearch
       }))
       .catch( err => res.send(err) )
+
+}
+
+
+export const geocodeStation = (req, res) => {
+
+   const geocoder = new Geocodio(geocodio_api_key)
+
+   geocoder.geocode({
+      street: req.body["HQ addr1"],
+      city: req.body["HQ city"],
+      state: req.body["HQ state"],
+      postal_code: req.body["HQ zip"]
+   })
+      .then( r => {
+         res.send(r)
+      })
+      .catch( err => res.send(err) )
+
+}
+
+
+
+
+export const addstation = (req, res) => {
+
+
 
 }
