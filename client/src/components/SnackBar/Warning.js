@@ -22,7 +22,7 @@ const Warning = () => {
             <div className="option">
                <button 
                   onClick={ () => {
-                     getStations({newSearch: true})
+                     getStations({newSearch: false, closeSnackbar: true})
                      dispatch( setZoomThreshhold(8) )
                   }} >
                   Apply as Filter

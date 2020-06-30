@@ -34,7 +34,7 @@ export function mapReducers(state = initialState, action){
             zoom: action.zoom
          }
 
-      case C.SEt_ZOOM_THRESHHOLD:
+      case C.SET_ZOOM_THRESHHOLD:
          return {
             ...state,
             zoomThreshhold: action.zoom

@@ -6,7 +6,7 @@ export const C = {
    SET_MAP_REFERENCE: "SET_MAP_REFERENCE",
    SET_MAP_CENTER: "SET_MAP_CENTER",
    SET_MAP_ZOOM: "SET_MAP_ZOOM",
-   SEt_ZOOM_THRESHHOLD: "SEt_ZOOM_THRESHHOLD",
+   SET_ZOOM_THRESHHOLD: "SET_ZOOM_THRESHHOLD",
    SET_MAP_BOUNDS: "SET_MAP_BOUNDS",
    SET_FIRESTATIONS: "SET_FIRESTATIONS",
    SET_OPEN_POPUP: "SET_OPEN_POPUP",
@@ -31,7 +31,7 @@ export const setMapZoom = zoom => ({
 })
 
 export const setZoomThreshhold = zoom => ({
-   type: C.SEt_ZOOM_THRESHHOLD,
+   type: C.SET_ZOOM_THRESHHOLD,
    zoom
 })
 
@@ -86,17 +86,15 @@ export const getStations = search => {
       console.log('Response:', res)
       store.dispatch( saveResults(res) )
 
-      if (res.stations.length > 500 
-         // && zoom < zoomThreshhold 
-         && search.newSearch){
+      if (res.stations.length > 500 && search.newSearch){
 
          store.dispatch( setSnackbar('warning') )
 
       } else {
+
          displayStations(res, search)
+
       }
-
-
 
    })
 
@@ -112,7 +110,7 @@ export const displayStations = (res, search) => {
    store.dispatch( setFireStations(results.stations) )
 
    // if getStations called from a new search, close the snackbar
-   if (search.searchTerms){
+   if (search.searchTerms || search.closeSnackbar){
       store.dispatch( setSnackbar(null) )
    }
 
