@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getStations, displayStations } from '../../store/actions/mapActions'
+import { getStations, displayStations, setZoomThreshhold } from '../../store/actions/mapActions'
 
 import '../../css/Warning.scss'
 
@@ -21,7 +21,10 @@ const Warning = () => {
 
             <div className="option">
                <button 
-                  onClick={ () => getStations({newSearch: true}) } >
+                  onClick={ () => {
+                     getStations({newSearch: true})
+                     dispatch( setZoomThreshhold(8) )
+                  }} >
                   Apply as Filter
                </button>
                <span>Only show stations when zoomed in by a certain amount (this is the default behavior)</span>

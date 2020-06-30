@@ -52,6 +52,8 @@ export const setOpenPopup = id => ({
 
 export const getStations = search => {
 
+   const { zoom, zoomThreshhold } = store.getState().map
+
    const boundsToUse = search.bounds || store.getState().map.bounds
 
    const query = {
@@ -84,8 +86,12 @@ export const getStations = search => {
       console.log('Response:', res)
       store.dispatch( saveResults(res) )
 
-      if (res.stations.length > 500){
+      if (res.stations.length > 500 
+         // && zoom < zoomThreshhold 
+         && search.newSearch){
+
          store.dispatch( setSnackbar('warning') )
+
       } else {
          displayStations(res, search)
       }
@@ -123,6 +129,7 @@ export const saveResults = results => ({
 export const fitMapToResults = results => {
 
    const { mapRef } = store.getState().map
+   store.dispatch( setZoomThreshhold(0) )
 
    const latlngs = results.map( station => {
       if (station.Latitude && station.Longitude){

@@ -1,3 +1,7 @@
+import store from '../store'
+import { setZoomThreshhold } from './mapActions'
+import { initialState } from '../reducers/mapReducers'
+
 export const C = {
 
    SET_SNACKBAR: "SET_SNACKBAR",
@@ -44,8 +48,13 @@ export const saveSearchTerms = searchTerms => {
 }
 
 
-export const clearSearchTerms = () => ({
-   type: C.CLEAR_SEARCH_TERMS,
-   searchTerms: undefined,
-   currentFilter: undefined
-})
+export const clearSearchTerms = () => {
+
+   store.dispatch( setZoomThreshhold(initialState.zoomThreshhold) )
+
+   return {
+      type: C.CLEAR_SEARCH_TERMS,
+      searchTerms: undefined,
+      currentFilter: undefined
+   }
+}
