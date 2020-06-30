@@ -1,5 +1,6 @@
 import L from 'leaflet'
-import { setSnackbar } from './navigationActions'
+import store from '../store'
+import { setSnackbar, createPendingAddition } from './navigationActions'
 
 export const C = {
 
@@ -168,8 +169,9 @@ export const geocodeStation = values => {
       body: JSON.stringify(values)
    })
       .then( res => res.json() )
-      .then( res => console.log(res) )
+      .then( res => {
+         console.log(res)
+      })
       .catch( err => console.error(err) )
-
 
 }

@@ -6,7 +6,8 @@ export const C = {
 
    SET_SNACKBAR: "SET_SNACKBAR",
    SAVE_SEARCH_TERMS: "SAVE_SEARCH_TERMS",
-   CLEAR_SEARCH_TERMS: "CLEAR_SEARCH_TERMS"
+   CLEAR_SEARCH_TERMS: "CLEAR_SEARCH_TERMS",
+   CREATE_PENDING_ADDITION: "CREATE_PENDING_ADDITION"
 
 }
 
@@ -58,3 +59,12 @@ export const clearSearchTerms = () => {
       currentFilter: undefined
    }
 }
+
+
+const createPendingAddition = (search, results) => ({
+   type: C.CREATE_PENDING_ADDITION,
+   pendingAddition: {
+      search, 
+      values
+   }
+})
