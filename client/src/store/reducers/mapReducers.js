@@ -6,6 +6,7 @@ export const initialState = {
    zoom: 9,
    zoomThreshhold: 8,
    bounds: undefined,
+   results: undefined,
    stations: [],
    openPopupId: null
 }
@@ -43,6 +44,12 @@ export function mapReducers(state = initialState, action){
          return {
             ...state,
             bounds: action.bounds
+         }
+
+      case C.SAVE_RESULTS:
+         return {
+            ...state,
+            results: action.results
          }
          
       case C.SET_FIRESTATIONS:

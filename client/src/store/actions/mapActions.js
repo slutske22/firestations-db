@@ -10,6 +10,7 @@ export const C = {
    SET_MAP_BOUNDS: "SET_MAP_BOUNDS",
    SET_FIRESTATIONS: "SET_FIRESTATIONS",
    SET_OPEN_POPUP: "SET_OPEN_POPUP",
+   SAVE_RESULTS: "SAVE_RESULTS",
    FIT_MAP_TO_RESULTS: "FIT_MAP_TO_RESULTS"
 
 }
@@ -81,21 +82,12 @@ export const getStations = search => {
    .then( res => {
 
       console.log('Response:', res)
+      store.dispatch( saveResults(res) )
 
       if (res.stations.length > 500){
          store.dispatch( setSnackbar('warning') )
       } else {
-
-         if (res.fitMapToResults){
-            fitMapToResults(res.stations)
-         }
-         store.dispatch( setFireStations(res.stations) )
-
-         // if getStations called from a new search, close the snackbar
-         if (search.searchTerms){
-            store.dispatch( setSnackbar(null) )
-         }
-
+         displayStations(res, search)
       }
 
 
@@ -103,6 +95,30 @@ export const getStations = search => {
    })
 
 }
+
+export const displayStations = (res, search) => {
+
+   const results = res || store.getState().map.results
+
+   if (results.fitMapToResults){
+      fitMapToResults(results.stations)
+   }
+   store.dispatch( setFireStations(results.stations) )
+
+   // if getStations called from a new search, close the snackbar
+   if (search.searchTerms){
+      store.dispatch( setSnackbar(null) )
+   }
+
+}
+
+
+export const saveResults = results => ({
+   type: C.SAVE_RESULTS,
+   results
+})
+
+
 
 export const fitMapToResults = results => {
 

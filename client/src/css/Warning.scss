@@ -6,12 +6,20 @@
 
    .option {
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       margin: 40px 30px;
    }
 
    button {
       flex: 1 0 150px;
       margin-right: 10px;
+      margin-bottom: 5px;
+      max-height: 42px;
+   }
+
+   span {
+      flex: 8 0 150px;
    }
 
 }

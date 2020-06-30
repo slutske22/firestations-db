@@ -1,11 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { getStations, displayStations } from '../../store/actions/mapActions'
 
 import '../../css/Warning.scss'
 
 const Warning = () => {
 
    const zoomThreshhold = useSelector( state => state.map.zoomThreshhold )
+   const dispatch = useDispatch()
 
    return (
       <div className="Warning">
@@ -17,13 +20,22 @@ const Warning = () => {
             <p>Your search returned over 500 stations.  Trying to render these all at once may strain or crash the appliation.</p>
 
             <div className="option">
-               <button>Apply as Filter</button>
+               <button 
+                  onClick={ () => getStations({newSearch: true}) } >
+                  Apply as Filter
+               </button>
                <span>Only show stations when zoomed in by a certain amount (this is the default behavior)</span>
             </div>
 
             <div className="option">
-               <button className="warning">Force Render</button>
-               <span>Fit the map to contain all stations and force the browser to render them.</span>
+               <button 
+                  className="warning"
+                  onClick={ () => {
+                     displayStations(null, { searchTerms: true }) 
+                     }} >
+                     Force Render
+                  </button>
+               <span>Fit the map to contain all stations and force the browser to render them.  The application may freeze, crash, or take a long time to respond.</span>
             </div>
 
          </section>
