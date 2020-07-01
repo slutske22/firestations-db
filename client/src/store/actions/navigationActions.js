@@ -61,10 +61,10 @@ export const clearSearchTerms = () => {
 }
 
 
-const createPendingAddition = (search, results) => ({
+export const createPendingAddition = (search, results) => ({
    type: C.CREATE_PENDING_ADDITION,
    pendingAddition: {
       search, 
-      values
+      results
    }
 })

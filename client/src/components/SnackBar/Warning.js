@@ -7,7 +7,7 @@ import '../../css/Warning.scss'
 
 const Warning = () => {
 
-   const zoomThreshhold = useSelector( state => state.map.zoomThreshhold )
+   const stationNumber = useSelector( state => state.map.results?.stations.length )
    const dispatch = useDispatch()
 
    return (
@@ -17,7 +17,7 @@ const Warning = () => {
 
          <section>
 
-            <p>Your search returned over 500 stations.  Trying to render these all at once may strain or crash the appliation.</p>
+            <p>Your search returned {stationNumber} stations.  Trying to render these all at once may strain or crash the application.</p>
 
             <div className="option">
                <button 

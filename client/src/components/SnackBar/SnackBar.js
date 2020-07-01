@@ -6,6 +6,7 @@ import AddForm from './AddForm/AddForm'
 import Info from './Info'
 import Search from './Search'
 import Warning from './Warning'
+import ConfirmAddition from './ConfirmAddition'
 
 import { setSnackbar } from '../../store/actions/navigationActions'
 
@@ -16,7 +17,8 @@ const menus = {
    add: <AddForm />,
    info: <Info />,
    search: <Search />,
-   warning: <Warning />
+   warning: <Warning />,
+   confirm: <ConfirmAddition />
 }
 
 const SnackBar = () => {
@@ -27,10 +29,12 @@ const SnackBar = () => {
    return ( 
       <div className="SnackBar wrapper">
          <div className="content">
-            <FaTimes 
-               size={28}
-               className="close-button" 
-               onClick={ () => dispatch( setSnackbar(null) ) } />
+            { (snackbar === "add" || snackbar === "info" || snackbar === "search") && 
+               <FaTimes 
+                  size={28}
+                  className="close-button" 
+                  onClick={ () => dispatch( setSnackbar(null) ) } />
+            }
             {menus[snackbar]}
          </div>
       </div>

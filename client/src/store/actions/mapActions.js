@@ -85,10 +85,10 @@ export const getStations = search => {
    .then( res => {
 
       console.log('Response:', res)
-      store.dispatch( saveResults(res) )
 
       if (res.stations.length > 500 && search.newSearch){
 
+         store.dispatch( saveResults(res) )
          store.dispatch( setSnackbar('warning') )
 
       } else {
@@ -171,6 +171,8 @@ export const geocodeStation = values => {
       .then( res => res.json() )
       .then( res => {
          console.log(res)
+         store.dispatch( createPendingAddition(values, res) )
+         store.dispatch( setSnackbar('confirm') )
       })
       .catch( err => console.error(err) )
 
