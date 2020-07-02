@@ -8,7 +8,8 @@ export const initialState = {
    bounds: undefined,
    results: undefined,
    stations: [],
-   openPopupId: null
+   openPopupId: null,
+   pendingAddition: null
 }
 
 
@@ -62,6 +63,12 @@ export function mapReducers(state = initialState, action){
          return {
             ...state,
             openPopupId: action.id
+         }
+
+      case C.CREATE_PENDING_ADDITION:
+         return {
+            ...state,
+            pendingAddition: action.pendingAddition
          }
 
       default:

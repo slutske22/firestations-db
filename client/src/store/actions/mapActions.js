@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import store from '../store'
-import { setSnackbar, createPendingAddition } from './navigationActions'
+import { setSnackbar } from './navigationActions'
 
 export const C = {
 
@@ -12,7 +12,8 @@ export const C = {
    SET_FIRESTATIONS: "SET_FIRESTATIONS",
    SET_OPEN_POPUP: "SET_OPEN_POPUP",
    SAVE_RESULTS: "SAVE_RESULTS",
-   FIT_MAP_TO_RESULTS: "FIT_MAP_TO_RESULTS"
+   FIT_MAP_TO_RESULTS: "FIT_MAP_TO_RESULTS",
+   CREATE_PENDING_ADDITION: "CREATE_PENDING_ADDITION"
 
 }
 
@@ -172,8 +173,17 @@ export const geocodeStation = values => {
       .then( res => {
          console.log(res)
          store.dispatch( createPendingAddition(values, res) )
-         store.dispatch( setSnackbar('confirm') )
+         store.dispatch( setSnackbar(null) )
       })
       .catch( err => console.error(err) )
 
 }
+
+
+export const createPendingAddition = (search, results) => ({
+   type: C.CREATE_PENDING_ADDITION,
+   pendingAddition: {
+      search, 
+      geocoded: results
+   }
+})

@@ -4,7 +4,6 @@ const initialState = {
    snackbar: 'info',
    currentSearchTerms: undefined,
    currentFilter: undefined,
-   pendingAddition: null
 }
 
 export function navigationReducers(state = initialState, action){
@@ -29,12 +28,6 @@ export function navigationReducers(state = initialState, action){
             ...state,
             currentSearchTerms: action.searchTerms,
             currentFilter: action.currentFilter
-         }
-
-      case C.CREATE_PENDING_ADDITION:
-         return {
-            ...state,
-            pendingAddition: action.pendingAddition
          }
 
       default:
