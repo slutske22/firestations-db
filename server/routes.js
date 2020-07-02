@@ -22,13 +22,17 @@ const routes = app => {
    //    })
 
 
-      // Working:
+      // Get statoins list from DB:
       app.route('/api/getstations')
          .post(getStations)
 
       // Geocode a station with GeoCodio:
       app.route('/api/geocodestation')
          .post(geocodeStation)
+
+      // Add station to DB:
+      app.route('/api/addstation')
+         .post(addstation)
 
 }
 

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { Marker, CircleMarker, Popup } from 'react-leaflet'
 import { useSelector, useDispatch } from 'react-redux'
-import { setOpenPopup, createPendingAddition } from '../store/actions/mapActions'
+import { setOpenPopup, createPendingAddition, addStation } from '../store/actions/mapActions'
+import { setSnackbar } from '../store/actions/navigationActions'
+
 
 import '../css/FireStations.scss'
 
@@ -95,7 +97,7 @@ const FireStations = () => {
 
             const PopupWithDetails = () => (
                <Popup 
-                  maxWidth={550} 
+                  maxWidth={500} 
                   onOpen={ () => handlePopupOpen(station._id) } 
                   onClose={ handlePopupClose }
                   autoPan={false}
@@ -143,7 +145,7 @@ const FireStations = () => {
                ]}>
 
                <Popup 
-                  maxWidth={550} 
+                  maxWidth={500} 
                   onOpen={ () => {} } 
                   onClose={ () => {dispatch( createPendingAddition(null) )} }
                   ref={ref => popupLeafletElements["pending"] = ref} >
@@ -157,10 +159,12 @@ const FireStations = () => {
                      </div>
 
                      <div className="actions">
-                        <button>
+                        <button onClick={ () => {
+                           dispatch( setSnackbar('add') )
+                        }}>
                            No, Edit Station Info
                         </button>
-                        <button>
+                        <button onClick={ () => dispatch( addStation() ) }>
                            Yes, Add Station
                         </button>
                      </div>

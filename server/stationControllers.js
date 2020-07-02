@@ -58,7 +58,7 @@ export const getStations = (req, res) => {
    }
    const search_type = searchTerms ? searchTerms.search_type || "$or" : "$or"
 
-   console.log('searchTerms \n', searchTerms)
+   // console.log('searchTerms \n', searchTerms)
    // console.log('"search_type" \n', search_type)
 
    // query variable represents part of query coming from search form
@@ -87,7 +87,7 @@ export const getStations = (req, res) => {
 
       // Get array inputs
       for (var key in searchShape.arrays) {
-         console.log(key)
+         // console.log(key)
          if (searchTerms[key].length > 0){
             const group = { '$or': [] }
             searchTerms[key].forEach( item => {
@@ -125,7 +125,7 @@ export const getStations = (req, res) => {
 
    // Apply LatLng bounds
    
-   console.log('totalQuery \n', JSON.stringify(totalQuery, null, 2))
+   // console.log('totalQuery \n', JSON.stringify(totalQuery, null, 2))
    
    Station.find(totalQuery).collation({ locale: 'en_US', strength: 2 })
       .then( docs => res.json({
@@ -159,6 +159,28 @@ export const geocodeStation = (req, res) => {
 
 export const addstation = (req, res) => {
 
+   const newStation = new Station({
+      "FDID": req.body["FDID"],
+      "Fire dept name": req.body["Fire dept name"],
+      "HQ addr1": req.body["HQ addr1"],
+      "HQ addr2": req.body["HQ addr2"],
+      "HQ city": req.body["HQ city"],
+      "HQ state": req.body["HQ state"],
+      "HQ zip": req.body["HQ zip"],
+      "HQ phone": req.body["HQ phone"],
+      "HQ fax": req.body["HQ fax"],
+      "County": req.body["County"],
+      "Dept Type": req.body["Dept Type"],
+   })
 
+   console.log(req.body)
+   console.log('newStation before save', newStation)
+
+   newStation.save( function(err){
+      if (err) {
+         console.error(err)
+      }
+      console.log('newStation after save', newStation)
+   })
 
 }

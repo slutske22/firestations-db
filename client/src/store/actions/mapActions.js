@@ -143,21 +143,6 @@ export const fitMapToResults = results => {
 
 }
 
-
-export const addStation = values => {
-
-   // geocode address
-
-   fetch('/api/addstation', {
-      method: "POST",
-      headers: {
-         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-   })
-
-}
-
 export const geocodeStation = values => {
 
    console.log('values in geocodeStation', values)
@@ -187,3 +172,24 @@ export const createPendingAddition = (search, results) => ({
       geocoded: results
    }
 })
+
+
+export const addStation = () => {
+
+   const { search, geocoded } = store.getState().map.pendingAddition
+   
+   const stationToAdd = {
+      ...search,
+      Latitude: geocoded.results[0].location.lat,
+      Longitude: geocoded.results[0].location.lng
+   }
+
+   fetch('/api/addstation', {
+      method: "POST",
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(stationToAdd)
+   })
+
+}
