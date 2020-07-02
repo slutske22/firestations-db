@@ -70,8 +70,8 @@ const FireStations = () => {
 
    const content = station => (
       <div className="station-popup-content">
-         <h4>{station["Fire dept name"]}</h4>
-         <h5>FDID: {station.FDID}</h5>
+         <h3>{station["Fire dept name"]}</h3>
+         <h4>FDID: {station.FDID}</h4>
          <div className="address-info">
             <div className="group group1">
                {station["HQ addr1"] && <>{station["HQ addr1"]} <br /></>}
@@ -79,11 +79,54 @@ const FireStations = () => {
                {station["HQ city"] && <>{station["HQ city"]} &nbsp;</>} 
                {station["HQ state"] && <>{station["HQ state"]},  &nbsp;</>}
                {station["HQ zip"] && <>{station["HQ zip"]} <br /></>}
+               {station["County"] && <>{station["County"]}</>} 
             </div>
             <div className="group group2">
                {station["HQ phone"] && <>Phone: {station["HQ phone"]} <br /></>}
                {station["HQ fax"] && <>Fax: {station["HQ fax"]} <br /></>}
-               {station["County"] && <>{station["County"]}</>} 
+            </div>
+         </div>
+         <div className="station-info">
+            <div className="group">
+               Organization Type: {station["Organization Type"]} <br />
+               Department Type: {station["Dept Type"]} <br />
+               Number of Stations: {station["Number Of Stations"]} <br />
+               Primary Agency for Emergency Management: 
+               {station["Primary agency for emergency mgmt"] 
+                  ? ( station["Primary agency for emergency mgmt"] !== " No" ? " Yes" : " No" ) 
+                  : " No"} <br />
+            </div>
+            <div className="staff">
+               <div className="group">
+                  <h5>Firefighters:</h5>
+                  <ul>
+                     <li>
+                        <span>Career:</span> 
+                        <span>{station["Active Firefighters - Career"]}</span>
+                     </li>
+                     <li>
+                        <span>Paid Per call:</span> 
+                        <span>{station["Active Firefighters - Paid per Call"]}</span>
+                     </li>
+                     <li>
+                        <span>Volunteer:</span> 
+                        <span>{station["Active Firefighters - Volunteer"]}</span>
+                     </li>
+                  </ul>
+               </div>
+               <div className="group">
+                  <h5>Non-firefighter:</h5>
+                  <ul>
+                     <li>
+                        <span>Civilian:</span> 
+                        <span>{station["Non-Firefighting - Civilian"]}</span>
+                     </li>
+                     <li>
+                        <span>Volunteer:</span> 
+                        <span>{station["Non-Firefighting - Volunteer"]}</span>
+                     </li>
+                  </ul>
+               </div>
             </div>
          </div>
       </div>

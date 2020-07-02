@@ -176,11 +176,8 @@ export const addstation = (req, res) => {
    console.log(req.body)
    console.log('newStation before save', newStation)
 
-   newStation.save( function(err){
-      if (err) {
-         console.error(err)
-      }
-      console.log('newStation after save', newStation)
-   })
+   newStation.save()
+      .then( res => console.log('saved item,', res))
+      .catch( error => console.log('Error saving:', error) )
 
 }

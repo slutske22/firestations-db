@@ -14,6 +14,39 @@
       }
    }
 
+   .group {
+      margin-bottom: 1.2em;
+   }
+
+   .staff {
+      
+      display: flex;
+
+      h5 {
+         margin: 0;
+         font-size: 15px;
+      }
+
+      .group {
+         width: 50%;
+      }
+
+      ul {
+         list-style: none;
+         padding: 0;
+      }
+
+      li {
+         display: flex;
+      }
+
+      span:first-child{
+         flex: 0.5;
+      }
+
+   }
+
+
 }
 
 
