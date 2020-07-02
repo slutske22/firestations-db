@@ -177,7 +177,10 @@ export const addstation = (req, res) => {
    console.log('newStation before save', newStation)
 
    newStation.save()
-      .then( res => console.log('saved item,', res))
+      .then( res => {
+         console.log(mongoose.connection.readyState)
+         console.log('saved item,', res)
+      })
       .catch( error => console.log('Error saving:', error) )
 
 }

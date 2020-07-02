@@ -91,8 +91,7 @@ const FireStations = () => {
                Organization Type: {station["Organization Type"]} <br />
                Department Type: {station["Dept Type"]} <br />
                Number of Stations: {station["Number Of Stations"]} <br />
-               Primary Agency for Emergency Management: 
-               {station["Primary agency for emergency mgmt"] 
+               Primary Agency for Emergency Management: {station["Primary agency for emergency mgmt"] 
                   ? ( station["Primary agency for emergency mgmt"] !== " No" ? " Yes" : " No" ) 
                   : " No"} <br />
             </div>
@@ -197,7 +196,7 @@ const FireStations = () => {
 
                      <h3>Does this look correct?</h3>
 
-                     <div className="station-info">
+                     <div className="station-preview">
                         {content(pendingAddition.search)}
                      </div>
 
