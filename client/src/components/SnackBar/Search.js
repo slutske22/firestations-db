@@ -144,7 +144,7 @@ const Search = ({
                                     if (!values["Organization Type"].includes(type.value)){
                                        values["Organization Type"].push(type.value)
                                     } else {
-                                       const idx = values["Dept Type"].indexOf(type.value)
+                                       const idx = values["Organization Type"].indexOf(type.value)
                                        values["Organization Type"].splice(idx, 1)
                                     }
                                     setFieldValue("Organization Type", values["Organization Type"])
