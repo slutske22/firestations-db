@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const Geocodio = require('geocodio-library-node');
-const StationSchema =  require('./stationModel')
+const Geocodio = require('geocodio-library-node')
+const StationSchema = require('./stationModel')
 
 const Station = mongoose.model('Station', StationSchema, 'FEMA_stations')
 const geocodio_api_key = '55fb5d6a4dee5cf4c25aaf48ea4528ad28acbb5'
@@ -159,28 +159,16 @@ export const geocodeStation = (req, res) => {
 
 export const addstation = (req, res) => {
 
-   const newStation = new Station({
-      "FDID": req.body["FDID"],
-      "Fire dept name": req.body["Fire dept name"],
-      "HQ addr1": req.body["HQ addr1"],
-      "HQ addr2": req.body["HQ addr2"],
-      "HQ city": req.body["HQ city"],
-      "HQ state": req.body["HQ state"],
-      "HQ zip": req.body["HQ zip"],
-      "HQ phone": req.body["HQ phone"],
-      "HQ fax": req.body["HQ fax"],
-      "County": req.body["County"],
-      "Dept Type": req.body["Dept Type"],
-   })
+   const newStation = new Station(req.body)
 
    console.log(req.body)
    console.log('newStation before save', newStation)
 
-   newStation.save()
-      .then( res => {
-         console.log(mongoose.connection.readyState)
-         console.log('saved item,', res)
-      })
-      .catch( error => console.log('Error saving:', error) )
+   // newStation.save()
+   //    .then( res => {
+   //       console.log(mongoose.connection.readyState)
+   //       console.log('saved item,', res)
+   //    })
+   //    .catch( error => console.log('Error saving:', error) )
 
 }

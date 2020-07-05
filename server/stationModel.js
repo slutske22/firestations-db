@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-export const StationSchema = new mongoose.Schema({
+const StationSchema = new mongoose.Schema({
    "FDID": String,
    "Fire dept name": String,
    "HQ addr1": String,
@@ -26,3 +26,5 @@ export const StationSchema = new mongoose.Schema({
    "Accuracy Score": Number,
    "Accuracy Type": String
 }, {collection: "FEMA_stations"}) 
+
+module.exports = StationSchema
