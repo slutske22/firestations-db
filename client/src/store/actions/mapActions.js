@@ -14,7 +14,8 @@ export const C = {
    SAVE_RESULTS: "SAVE_RESULTS",
    FIT_MAP_TO_RESULTS: "FIT_MAP_TO_RESULTS",
    CREATE_PENDING_ADDITION: "CREATE_PENDING_ADDITION",
-   CREATE_PENDING_DELETION: "CREATE_PENDING_DELETION"
+   CREATE_PENDING_DELETION: "CREATE_PENDING_DELETION",
+   CREATE_PENDING_EDIT: "CREATE_PENDING_EDIT"
 
 }
 
@@ -242,6 +243,33 @@ export const deleteStation = () => {
          store.dispatch( createPendingDeletion(null) )
          store.dispatch(setOpenPopup(null))
          getStations()
+      })
+
+}
+
+
+export const createPendingEdit = values => {
+
+   store.dispatch( setSnackbar('edit') )
+
+   return {
+      type: C.CREATE_PENDING_EDIT,
+      values
+   }
+}
+
+export const saveEdit = values => {
+
+   fetch('/api/editStation', {
+      method: "POST",
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+   })
+      .then( res => res.json() )
+      .then( res => {
+         store.dispatch( createPendingEdit(null) )
       })
 
 }

@@ -1,5 +1,12 @@
 .leaflet-popup-content {
    max-width: 80vw;
+   min-width: 350px;
+}
+
+@media (max-width: 370px){
+   .leaflet-popup-content {
+      min-width: 320px;
+   }
 }
 
 

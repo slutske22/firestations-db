@@ -10,8 +10,8 @@ export const step1validation = Yup.object({
   "HQ addr2": '',
   "HQ city": Yup.string().required("Required"),
   "HQ state": Yup.string().required("Required"),
-  "HQ zip": Yup.number().required("Required"),
-  "HQ phone": Yup.number().required("Required"),
+  "HQ zip": Yup.string().required("Required"),
+  "HQ phone": Yup.string().required("Required"),
   "HQ fax": '',
   "County": Yup.string().required("Required"),
 })

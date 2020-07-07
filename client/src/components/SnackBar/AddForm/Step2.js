@@ -22,12 +22,12 @@ const deptTypes = [
 ]
 
 const orgTypes = [
-  {value: "Local", name: "Local"},
-  {value: "State", name: "State"},
-  {value: "Federal DOD", name: "Federal (Department of Defense)"},
-  {value: "Federal Exec", name: "Federal (Executive Branch)"},
-  {value: "Contract", name: "Contract"},
-  {value: "Private", name: "Private"},
+  {value: "Local (includes career, combination, and volunteer)", name: "Local"},
+  {value: "State government", name: "State"},
+  {value: "Federal government (Department of Defense)", name: "Federal (Department of Defense)"},
+  {value: "Federal government (Executive branch)", name: "Federal (Executive Branch)"},
+  {value: "Contract fire department", name: "Contract"},
+  {value: "Private or industrial fire brigade", name: "Private"},
   {value: "Other", name: "Other"},
 ]
 
@@ -121,7 +121,7 @@ export const Step2 = ({values, handleChange, setFieldValue}) => {
             <Field 
                 type="checkbox" 
                 name="Primary agency for emergency mgmt" />
-            <span>Primary Agency for Emergency Management:</span>
+            <span>Primary Agency for Emergency Management</span>
           </label>
       </div> 
 

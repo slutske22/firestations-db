@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { FaTimes } from 'react-icons/fa'
 
 import AddForm from './AddForm/AddForm'
+import EditForm from './EditForm/EditForm'
 import Info from './Info'
 import Search from './Search'
 import Warning from './Warning'
@@ -20,7 +21,8 @@ const menus = {
    search: <Search />,
    warning: <Warning />,
    confirm: <ConfirmAddition />,
-   delete: <ConfirmDeletion />
+   delete: <ConfirmDeletion />,
+   edit: <EditForm />
 }
 
 const SnackBar = () => {
@@ -31,7 +33,7 @@ const SnackBar = () => {
    return ( 
       <div className={`SnackBar wrapper ${snackbar}`}>
          <div className="content">
-            { (snackbar === "add" || snackbar === "info" || snackbar === "search") && 
+            { (snackbar === "add" || snackbar === "info" || snackbar === "search" || snackbar === "edit") && 
                <FaTimes 
                   size={28}
                   className="close-button" 
