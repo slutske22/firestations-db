@@ -30,14 +30,15 @@ const FireStations = () => {
    const mapRef = useSelector(state => state.map.mapRef)
    const stations = useSelector(state => state.map.stations)
    const zoom = useSelector(state => state.map.zoom)
-   const openPopupId = useSelector(state => state.map.openPopupId)
+   const openPopupId = useSelector(state => state.map.openPopupId?.id)
+   const snackbar = useSelector(state => state.nav.snackbar)
    const pendingAddition = useSelector(state => state.map.pendingAddition)
    const dispatch = useDispatch()
 
    const popupLeafletElements = {}
 
    const handlePopupOpen = id => {
-      dispatch( setOpenPopup(id) )
+      dispatch( setOpenPopup({id, popup: popupLeafletElements[id]}) )
    }
 
    const handlePopupClose = () => {
@@ -53,7 +54,7 @@ const FireStations = () => {
       if (popupLeafletElements[openPopupId]){
          popupLeafletElements[openPopupId].leafletElement._source.openPopup()
       }
-   }, [stations, openPopupId] )
+   }, [stations, openPopupId, snackbar] )
 
    useEffect( () => {
       if (pendingAddition?.geocoded?.results?.length > 0) {

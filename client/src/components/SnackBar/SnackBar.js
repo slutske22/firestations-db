@@ -29,7 +29,7 @@ const SnackBar = () => {
    const dispatch = useDispatch()
 
    return ( 
-      <div className="SnackBar wrapper">
+      <div className={`SnackBar wrapper ${snackbar}`}>
          <div className="content">
             { (snackbar === "add" || snackbar === "info" || snackbar === "search") && 
                <FaTimes 

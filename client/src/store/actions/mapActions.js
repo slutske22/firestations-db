@@ -214,7 +214,9 @@ export const addStation = () => {
 
 export const createPendingDeletion = id => {
 
-   store.dispatch( setSnackbar('delete') )
+   if (id){
+      store.dispatch( setSnackbar('delete') )
+   }
 
    return {
       type: C.CREATE_PENDING_DELETION,

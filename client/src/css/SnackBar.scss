@@ -101,3 +101,25 @@
    }
 
 }
+
+.SnackBar.delete {
+
+   .content {
+      width: auto;
+      height: auto;
+      padding: 20px;
+      margin: 20px;
+   }
+
+   .button-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 10px;
+   }
+
+   .ConfirmDeletion {
+      max-width: 375px;
+   }
+
+}
