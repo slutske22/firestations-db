@@ -20,11 +20,12 @@ const StationSchema = new mongoose.Schema({
    "Active Firefighters - Paid per Call": Number,
    "Non-Firefighting - Civilian": Number,
    "Non-Firefighting - Volunteer": Number,
-   "Primary agency for emergency mgmt": Boolean,
-   "Latitude:": Number,
-   "Longitude:": Number,
+   "Primary agency for emergency mgmt": String,
+   "Latitude": Number,
+   "Longitude": Number,
    "Accuracy Score": Number,
-   "Accuracy Type": String
+   "Accuracy Type": String,
+   "Original FEMA dataset": String
 }, {collection: "FEMA_stations"}) 
 
 module.exports = StationSchema

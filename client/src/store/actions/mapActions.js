@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import store from '../store'
-import { setSnackbar } from './navigationActions'
+import { setSnackbar, clearSearchTerms } from './navigationActions'
 
 export const C = {
 
@@ -184,12 +184,27 @@ export const addStation = () => {
       Longitude: geocoded.results[0].location.lng
    }
 
-   fetch('/api/addstation', {
-      method: "POST",
-      headers: {
-         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(stationToAdd)
-   })
+   console.log('stationToAdd', stationToAdd)
+
+   return function(dispatch){
+
+      return fetch('/api/addstation', {
+         method: "POST",
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(stationToAdd)
+      })
+         .then( res => res.json() )
+         .then( res => {
+            console.log('response after adding station', res)
+            dispatch(createPendingAddition(null))
+            dispatch(clearSearchTerms())
+            getStations({searchTerms: 'none'})
+            dispatch(setOpenPopup(res._id))
+         })
+
+   }
+
 
 }

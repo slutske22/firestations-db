@@ -132,7 +132,7 @@ export const getStations = (req, res) => {
          stations: docs,
          fitMapToResults: newSearch
       }))
-      .catch( err => res.send(err) )
+      .catch( err => res.status(200).send(err) )
 
 }
 
@@ -148,9 +148,9 @@ export const geocodeStation = (req, res) => {
       postal_code: req.body["HQ zip"]
    })
       .then( r => {
-         res.send(r)
+         res.status(200).send(r)
       })
-      .catch( err => res.send(err) )
+      .catch( err => res.status(err.status).send(err) )
 
 }
 
@@ -160,15 +160,16 @@ export const geocodeStation = (req, res) => {
 export const addstation = (req, res) => {
 
    const newStation = new Station(req.body)
+   newStation["Original FEMA dataset"] = "No"
 
    console.log(req.body)
    console.log('newStation before save', newStation)
 
-   // newStation.save()
-   //    .then( res => {
-   //       console.log(mongoose.connection.readyState)
-   //       console.log('saved item,', res)
-   //    })
-   //    .catch( error => console.log('Error saving:', error) )
+   newStation.save()
+      .then( r => {
+         console.log('saved item,', r)
+         res.status(200).send(JSON.stringify(r))
+      })
+      .catch( error => console.log('Error saving:', error) )
 
 }
