@@ -7,6 +7,7 @@ import Info from './Info'
 import Search from './Search'
 import Warning from './Warning'
 import ConfirmAddition from './ConfirmAddition'
+import ConfirmDeletion from './ConfirmDeletion'
 
 import { setSnackbar } from '../../store/actions/navigationActions'
 
@@ -18,7 +19,8 @@ const menus = {
    info: <Info />,
    search: <Search />,
    warning: <Warning />,
-   confirm: <ConfirmAddition />
+   confirm: <ConfirmAddition />,
+   delete: <ConfirmDeletion />
 }
 
 const SnackBar = () => {

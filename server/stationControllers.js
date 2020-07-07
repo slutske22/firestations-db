@@ -173,3 +173,15 @@ export const addstation = (req, res) => {
       .catch( error => console.log('Error saving:', error) )
 
 }
+
+
+
+export const deleteStation = (req, res) => {
+
+   const { id } = req.body
+
+   Station.deleteOne({ _id: id })
+      .then( r => res.status(200).send(r) )
+      .catch( error => console.log('Error deleting:', error) )
+
+}

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Marker, CircleMarker, Popup } from 'react-leaflet'
 import { useSelector, useDispatch } from 'react-redux'
-import { setOpenPopup, createPendingAddition, addStation } from '../store/actions/mapActions'
+import { setOpenPopup, createPendingAddition, addStation, createPendingDeletion } from '../store/actions/mapActions'
 import { setSnackbar } from '../store/actions/navigationActions'
 
 
@@ -127,6 +127,14 @@ const FireStations = () => {
                   </ul>
                </div>
             </div>
+         </div>
+         <div className="button-group">
+            <button>
+               Edit
+            </button>
+            <button onClick={ () => { dispatch( createPendingDeletion(station._id) ) }}>
+               Delete
+            </button>
          </div>
       </div>
    )

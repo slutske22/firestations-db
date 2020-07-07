@@ -9,7 +9,8 @@ export const initialState = {
    results: undefined,
    stations: [],
    openPopupId: null,
-   pendingAddition: null
+   pendingAddition: null,
+   pendingDeletion: null
 }
 
 
@@ -69,6 +70,12 @@ export function mapReducers(state = initialState, action){
          return {
             ...state,
             pendingAddition: action.pendingAddition
+         }
+
+      case C.CREATE_PENDING_DELETION: 
+         return {
+            ...state,
+            pendingDeletion: action.id
          }
 
       default:

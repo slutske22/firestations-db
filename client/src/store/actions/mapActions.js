@@ -13,7 +13,8 @@ export const C = {
    SET_OPEN_POPUP: "SET_OPEN_POPUP",
    SAVE_RESULTS: "SAVE_RESULTS",
    FIT_MAP_TO_RESULTS: "FIT_MAP_TO_RESULTS",
-   CREATE_PENDING_ADDITION: "CREATE_PENDING_ADDITION"
+   CREATE_PENDING_ADDITION: "CREATE_PENDING_ADDITION",
+   CREATE_PENDING_DELETION: "CREATE_PENDING_DELETION"
 
 }
 
@@ -206,5 +207,38 @@ export const addStation = () => {
 
    }
 
+
+}
+
+
+
+export const createPendingDeletion = id => {
+
+   store.dispatch( setSnackbar('delete') )
+
+   return {
+      type: C.CREATE_PENDING_DELETION,
+      id
+   }
+
+}
+
+
+export const deletePendingDeletion = () => {
+
+   fetch('/api/deleteStation', {
+      method: "POST",
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: store.getState().map.pendingDeletion })
+   })
+      .then( res => res.json() )
+      .then( res => {
+         store.dispatch( setSnackbar(null) )
+         store.dispatch( createPendingDeletion(null) )
+         getStations()
+         store.dispatch(setOpenPopup(null))
+      })
 
 }
