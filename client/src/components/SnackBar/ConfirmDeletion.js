@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setSnackbar } from '../../store/actions/navigationActions'
-import { createPendingDeletion } from '../../store/actions/mapActions'
+import { createPendingDeletion, deleteStation } from '../../store/actions/mapActions'
 
 const ConfirmDeletion = () => {
 
@@ -18,7 +18,7 @@ const ConfirmDeletion = () => {
             }}>
                Cancel
             </button>
-            <button>
+            <button onClick={deleteStation}>
                Yes, Delete
             </button>
          </div>

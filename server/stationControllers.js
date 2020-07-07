@@ -179,6 +179,7 @@ export const addstation = (req, res) => {
 export const deleteStation = (req, res) => {
 
    const { id } = req.body
+   console.log('detelstation', id)
 
    Station.deleteOne({ _id: id })
       .then( r => res.status(200).send(r) )

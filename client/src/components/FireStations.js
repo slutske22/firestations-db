@@ -30,7 +30,7 @@ const FireStations = () => {
    const mapRef = useSelector(state => state.map.mapRef)
    const stations = useSelector(state => state.map.stations)
    const zoom = useSelector(state => state.map.zoom)
-   const openPopupId = useSelector(state => state.map.openPopupId?.id)
+   const openPopupId = useSelector(state => state.map.openPopupId)
    const snackbar = useSelector(state => state.nav.snackbar)
    const pendingAddition = useSelector(state => state.map.pendingAddition)
    const dispatch = useDispatch()
@@ -38,7 +38,7 @@ const FireStations = () => {
    const popupLeafletElements = {}
 
    const handlePopupOpen = id => {
-      dispatch( setOpenPopup({id, popup: popupLeafletElements[id]}) )
+      dispatch( setOpenPopup(id) )
    }
 
    const handlePopupClose = () => {

@@ -226,7 +226,7 @@ export const createPendingDeletion = id => {
 }
 
 
-export const deletePendingDeletion = () => {
+export const deleteStation = () => {
 
    fetch('/api/deleteStation', {
       method: "POST",
@@ -237,10 +237,11 @@ export const deletePendingDeletion = () => {
    })
       .then( res => res.json() )
       .then( res => {
+         console.log('deleteStation', res)
          store.dispatch( setSnackbar(null) )
          store.dispatch( createPendingDeletion(null) )
-         getStations()
          store.dispatch(setOpenPopup(null))
+         getStations()
       })
 
 }
