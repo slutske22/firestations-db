@@ -186,3 +186,18 @@ export const deleteStation = (req, res) => {
       .catch( error => console.log('Error deleting:', error) )
 
 }
+
+export const editStation = (req, res) => {
+
+   console.log('edit one', req.body)
+   const { _id } = req.body
+   Station.updateOne( { _id }, req.body )
+      .then( r => {
+         res.status(200).send(r)
+      })
+      .catch( error => {
+         console.log("Error editing", error)
+         res.status(400).send(error)
+      })
+
+}

@@ -242,7 +242,7 @@ export const deleteStation = () => {
          store.dispatch( setSnackbar(null) )
          store.dispatch( createPendingDeletion(null) )
          store.dispatch(setOpenPopup(null))
-         getStations()
+         getStations({})
       })
 
 }
@@ -250,7 +250,9 @@ export const deleteStation = () => {
 
 export const createPendingEdit = values => {
 
-   store.dispatch( setSnackbar('edit') )
+   if (values) {
+      store.dispatch( setSnackbar('edit') )
+   }
 
    return {
       type: C.CREATE_PENDING_EDIT,
@@ -269,7 +271,11 @@ export const saveEdit = values => {
    })
       .then( res => res.json() )
       .then( res => {
+         console.log('response to edit', res)
          store.dispatch( createPendingEdit(null) )
+         store.dispatch( setSnackbar(null) )
+         store.dispatch( createPendingEdit(null) )
+         getStations({})
       })
 
 }

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { getStations, geocodeStation, addstation, deleteStation } from './stationControllers'
+import { getStations, geocodeStation, addstation, deleteStation, editStation } from './stationControllers'
 
 // function find (name, query, cb) {
 //    mongoose.connection.db.collection(name, function (err, collection) {
@@ -37,6 +37,9 @@ const routes = app => {
       // Delete station from DB:
       app.route('/api/deleteStation')
          .post(deleteStation)
+
+      app.route('/api/editStation')
+         .post(editStation)
 
 }
 
