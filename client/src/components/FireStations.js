@@ -78,19 +78,22 @@ const FireStations = () => {
       <div className="station-popup-content">
          <h3>{station["Fire dept name"]}</h3>
          <h4>FDID: {station.FDID}</h4>
-         <div className="address-info">
-            <div className="group group1">
-               {station["HQ addr1"] && <>{station["HQ addr1"]} <br /></>}
-               {station["HQ addr2"] && <>{station["HQ addr2"]} <br /></>}
-               {station["HQ city"] && <>{station["HQ city"]} &nbsp;</>} 
-               {station["HQ state"] && <>{station["HQ state"]},  &nbsp;</>}
-               {station["HQ zip"] && <>{station["HQ zip"]} <br /></>}
-               {station["County"] && <>{station["County"]}</>} 
+         <div className="contact-info">
+            <div className="address-info">
+               <div className="group group1">
+                  {station["HQ addr1"] && <>{station["HQ addr1"]} <br /></>}
+                  {station["HQ addr2"] && <>{station["HQ addr2"]} <br /></>}
+                  {station["HQ city"] && <>{station["HQ city"]} &nbsp;</>} 
+                  {station["HQ state"] && <>{station["HQ state"]},  &nbsp;</>}
+                  {station["HQ zip"] && <>{station["HQ zip"]}</>}
+                  {station["County"] && <><br />{station["County"]}</>} 
+               </div>
+               <div className="group group2">
+                  {station["HQ phone"] && <>Phone: {station["HQ phone"]} <br /></>}
+                  {station["HQ fax"] && <>Fax: {station["HQ fax"]} <br /></>}
+               </div>
             </div>
-            <div className="group group2">
-               {station["HQ phone"] && <>Phone: {station["HQ phone"]} <br /></>}
-               {station["HQ fax"] && <>Fax: {station["HQ fax"]} <br /></>}
-            </div>
+            {station.Website && <a href={station.Website} target="_blank" rel="noopener noreferrer">{station.Website}</a>}
          </div>
          <div className="station-info">
             <div className="group">
