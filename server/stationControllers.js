@@ -162,9 +162,6 @@ export const addstation = (req, res) => {
    const newStation = new Station(req.body)
    newStation["Original FEMA dataset"] = "No"
 
-   console.log(req.body)
-   console.log('newStation before save', newStation)
-
    newStation.save()
       .then( r => {
          console.log('saved item,', r)
@@ -179,7 +176,6 @@ export const addstation = (req, res) => {
 export const deleteStation = (req, res) => {
 
    const { id } = req.body
-   console.log('detelstation', id)
 
    Station.deleteOne({ _id: id })
       .then( r => res.status(200).send(r) )
@@ -189,7 +185,6 @@ export const deleteStation = (req, res) => {
 
 export const editStation = (req, res) => {
 
-   console.log('edit one', req.body)
    const { _id } = req.body
    Station.updateOne( { _id }, req.body )
       .then( r => {

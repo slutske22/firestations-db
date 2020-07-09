@@ -2,8 +2,8 @@ import { C } from "../actions/mapActions"
 
 export const initialState = {
    mapRef: undefined,
-   center: [35, -116],
-   zoom: 9,
+   center: [33.475432350351745, -116.93572998046876],
+   zoom: 8,
    zoomThreshhold: 8,
    bounds: undefined,
    results: undefined,

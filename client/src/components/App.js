@@ -6,6 +6,7 @@ import Map from './Map'
 import Menu from './Menu'
 import SnackBar from './SnackBar/SnackBar'
 import ActiveFilter from './ActiveFilter'
+import NoStationWarning from './NoStationWarning'
 
 
 import '../css/index.scss'
@@ -20,6 +21,7 @@ const App = () => {
          <Menu />
          {snackbar && <SnackBar />}
          <ActiveFilter />
+         <NoStationWarning />
       </div>
    )
 
