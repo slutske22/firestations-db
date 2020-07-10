@@ -126,10 +126,10 @@ export const getStations = (req, res) => {
          if (searchTerms[`${key} min`] || searchTerms[`${key} max`]) {
             const minmaxGroup = {}
             if (searchTerms[`${key} min`]){
-               minmaxGroup['$gte'] = searchTerms[`${key} min`]
+               minmaxGroup['$gt'] = searchTerms[`${key} min`]
             }
             if (searchTerms[`${key} max`]) {
-               minmaxGroup['$lte'] = searchTerms[`${key} max`]
+               minmaxGroup['$lt'] = searchTerms[`${key} max`]
             }
             query[search_type].push({[key]: minmaxGroup})
          }
