@@ -4,6 +4,7 @@ const initialState = {
    snackbar: 'info',
    currentSearchTerms: undefined,
    currentFilter: undefined,
+   loading: false
 }
 
 export function navigationReducers(state = initialState, action){
@@ -28,6 +29,12 @@ export function navigationReducers(state = initialState, action){
             ...state,
             currentSearchTerms: action.searchTerms,
             currentFilter: action.currentFilter
+         }
+
+      case C.SET_LOADING_STATUS:
+         return {
+            ...state,
+            loading: action.status
          }
 
       default:

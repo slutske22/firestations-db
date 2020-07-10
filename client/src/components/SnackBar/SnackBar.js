@@ -9,6 +9,7 @@ import Search from './Search'
 import Warning from './Warning'
 import ConfirmAddition from './ConfirmAddition'
 import ConfirmDeletion from './ConfirmDeletion'
+import Loading from './Loading'
 
 import { setSnackbar } from '../../store/actions/navigationActions'
 
@@ -28,11 +29,12 @@ const menus = {
 const SnackBar = () => {
 
    const snackbar = useSelector(state => state.nav.snackbar)
+   const loading = useSelector(state => state.nav.loading)
    const dispatch = useDispatch()
 
    return ( 
       <div className={`SnackBar wrapper ${snackbar}`}>
-         <div className="content">
+         <div className={`content ${loading ? 'loading' : ''}`}>
             { (snackbar === "add" || snackbar === "info" || snackbar === "search" || snackbar === "edit") && 
                <FaTimes 
                   size={28}
@@ -41,6 +43,7 @@ const SnackBar = () => {
             }
             {menus[snackbar]}
          </div>
+         {loading && snackbar !== 'info' && <Loading />}
       </div>
     );
 }
