@@ -24,23 +24,23 @@ const searchShape = {
    },
    minmax: {
       "Number Of Stations": '',
-      "Number Of Stations min": '',
-      "Number Of Stations max": '',
+      // "Number Of Stations min": '',
+      // "Number Of Stations max": '',
       "Active Firefighters - Career": '',
-      "Active Firefighters - Career min": '',
-      "Active Firefighters - Career max": '',
+      // "Active Firefighters - Career min": '',
+      // "Active Firefighters - Career max": '',
       "Active Firefighters - Volunteer": '',
-      "Active Firefighters - Volunteer min": '',
-      "Active Firefighters - Volunteer max": '',
+      // "Active Firefighters - Volunteer min": '',
+      // "Active Firefighters - Volunteer max": '',
       "Active Firefighters - Paid per Call": '',
-      "Active Firefighters - Paid per Call min": '',
-      "Active Firefighters - Paid per Call max": '',
+      // "Active Firefighters - Paid per Call min": '',
+      // "Active Firefighters - Paid per Call max": '',
       "Non-Firefighting - Civilian": '',
-      "Non-Firefighting - Civilian min": '',
-      "Non-Firefighting - Civilian max": '',
+      // "Non-Firefighting - Civilian min": '',
+      // "Non-Firefighting - Civilian max": '',
       "Non-Firefighting - Volunteer": '',
-      "Non-Firefighting - Volunteer min": '',
-      "Non-Firefighting - Volunteer max": '',
+      // "Non-Firefighting - Volunteer min": '',
+      // "Non-Firefighting - Volunteer max": '',
    }
 }
 
@@ -58,7 +58,7 @@ export const getStations = (req, res) => {
    }
    const search_type = searchTerms ? searchTerms.search_type || "$or" : "$or"
 
-   // console.log('searchTerms \n', searchTerms)
+   console.log('searchTerms \n', searchTerms)
    // console.log('"search_type" \n', search_type)
 
    // query variable represents part of query coming from search form
@@ -73,10 +73,18 @@ export const getStations = (req, res) => {
 
       // Get simple inputs
       for (var key in searchShape.simpleInputs) {
-         if (searchTerms[key] !== "") {
+         if (searchTerms[key] !== "" && key !== "County") {
             query[search_type].push(
                { [key]: searchTerms[key].toString().replace(/ +/g, ' ') } // trim extra spaces if needed
             ) 
+         }
+         if (key === "County" && searchTerms.County !== ""){
+            query[search_type].push(
+               { '$or': [
+                  {"County": searchTerms.County.replace(/ +/g, ' ') },
+                  {"County": `${searchTerms.County.replace(/ +/g, ' ')} county`}
+               ] }
+            )
          }
       }
 
@@ -87,7 +95,6 @@ export const getStations = (req, res) => {
 
       // Get array inputs
       for (var key in searchShape.arrays) {
-         // console.log(key)
          if (searchTerms[key].length > 0){
             const group = { '$or': [] }
             searchTerms[key].forEach( item => {
@@ -97,6 +104,36 @@ export const getStations = (req, res) => {
             })
             query[search_type].push(group)
          }
+      }
+
+      // Get minmax inputs
+      for (var key in searchShape.minmax) {
+         // if (searchTerms[`${key} min`] || searchTerms[`${key} max`]) {
+         //    const minmaxGroup = { '$and': [] }
+         //    if (searchTerms[`${key} min`]){
+         //       minmaxGroup.$and.push({
+         //          [key]: { $gte: searchTerms[`${key} min`] }
+         //       })
+         //    }
+         //    if (searchTerms[`${key} max`]) {
+         //       minmaxGroup.$and.push({
+         //          [key]: { $lte: searchTerms[`${key} max`] }
+         //       })
+         //    }
+         //    query[search_type].push(minmaxGroup)
+         // }
+
+         if (searchTerms[`${key} min`] || searchTerms[`${key} max`]) {
+            const minmaxGroup = {}
+            if (searchTerms[`${key} min`]){
+               minmaxGroup['$gte'] = searchTerms[`${key} min`]
+            }
+            if (searchTerms[`${key} max`]) {
+               minmaxGroup['$lte'] = searchTerms[`${key} max`]
+            }
+            query[search_type].push({[key]: minmaxGroup})
+         }
+
       }
 
    } // if (searchTerms) end
@@ -125,7 +162,7 @@ export const getStations = (req, res) => {
 
    // Apply LatLng bounds
    
-   // console.log('totalQuery \n', JSON.stringify(totalQuery, null, 2))
+   console.log('totalQuery \n', JSON.stringify(totalQuery, null, 2))
    
    Station.find(totalQuery).collation({ locale: 'en_US', strength: 2 })
       .then( docs => res.json({
