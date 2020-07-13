@@ -17,14 +17,10 @@ const EditForm = () => {
          <section>
             <MultiStepWizard
                initialValues={initialValues}>
-                  <WizardStep 
-                     validationSchema={step1validation}
-                     onSubmit={() => console.log("Step1 onSubmit")}>
+                  <WizardStep validationSchema={step1validation} >
                      <Step1 />
                   </WizardStep>
-                  <WizardStep 
-                     validationSchema={step2validation}
-                     onSubmit={() => console.log("Step1 onSubmit")}>
+                  <WizardStep validationSchema={step2validation} >
                      <Step2 />
                   </WizardStep>
             </MultiStepWizard>

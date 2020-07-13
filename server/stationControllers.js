@@ -58,7 +58,7 @@ export const getStations = (req, res) => {
    }
    const search_type = searchTerms ? searchTerms.search_type || "$or" : "$or"
 
-   console.log('searchTerms \n', searchTerms)
+   // console.log('searchTerms \n', searchTerms)
    // console.log('"search_type" \n', search_type)
 
    // query variable represents part of query coming from search form
@@ -108,20 +108,6 @@ export const getStations = (req, res) => {
 
       // Get minmax inputs
       for (var key in searchShape.minmax) {
-         // if (searchTerms[`${key} min`] || searchTerms[`${key} max`]) {
-         //    const minmaxGroup = { '$and': [] }
-         //    if (searchTerms[`${key} min`]){
-         //       minmaxGroup.$and.push({
-         //          [key]: { $gte: searchTerms[`${key} min`] }
-         //       })
-         //    }
-         //    if (searchTerms[`${key} max`]) {
-         //       minmaxGroup.$and.push({
-         //          [key]: { $lte: searchTerms[`${key} max`] }
-         //       })
-         //    }
-         //    query[search_type].push(minmaxGroup)
-         // }
 
          if (searchTerms[`${key} min`] || searchTerms[`${key} max`]) {
             const minmaxGroup = {}
@@ -142,7 +128,8 @@ export const getStations = (req, res) => {
    var totalQuery = {
       $and: []
    }
-
+   
+   // Apply LatLng bounds
    if (req.body.coords){
       totalQuery.$and.push(
          {
@@ -158,11 +145,8 @@ export const getStations = (req, res) => {
          query
       )
    }
-   
-
-   // Apply LatLng bounds
-   
-   console.log('totalQuery \n', JSON.stringify(totalQuery, null, 2))
+      
+   // console.log('totalQuery \n', JSON.stringify(totalQuery, null, 2))
    
    Station.find(totalQuery).collation({ locale: 'en_US', strength: 2 })
       .then( docs => res.json({
@@ -201,7 +185,6 @@ export const addstation = (req, res) => {
 
    newStation.save()
       .then( r => {
-         console.log('saved item,', r)
          res.status(200).send(JSON.stringify(r))
       })
       .catch( error => console.log('Error saving:', error) )

@@ -77,7 +77,7 @@ export const getStations = search => {
       newSearch: search.newSearch
    }
 
-   console.log('Call:', query)
+   // console.log('Call:', query)
 
    fetch('/api/getstations', {
       method: "POST",
@@ -89,7 +89,7 @@ export const getStations = search => {
    .then( res => res.json() )
    .then( res => {
 
-      console.log('Response:', res)
+      // console.log('Response:', res)
 
       if (res.stations.length > 500 && search.newSearch){
 
@@ -142,7 +142,7 @@ export const fitMapToResults = results => {
          return L.marker([station.Latitude, station.Longitude])
       }
    }).filter( point => point )
-   console.log('latlngs', latlngs)
+
    const group = L.featureGroup(latlngs)
 
    mapRef.fitBounds(group.getBounds(), {padding: [40, 40]})
@@ -151,7 +151,7 @@ export const fitMapToResults = results => {
 
 export const geocodeStation = values => {
 
-   console.log('values in geocodeStation', values)
+   store.dispatch( setLoadingStatus(true) )
 
    fetch('/api/geocodestation', {
       method: "POST",
@@ -162,8 +162,8 @@ export const geocodeStation = values => {
    })
       .then( res => res.json() )
       .then( res => {
-         console.log(res)
          store.dispatch( createPendingAddition(values, res) )
+         store.dispatch( setLoadingStatus(false) )
          store.dispatch( setSnackbar(null) )
       })
       .catch( err => console.error(err) )
@@ -190,8 +190,6 @@ export const addStation = () => {
       Longitude: geocoded.results[0].location.lng
    }
 
-   console.log('stationToAdd', stationToAdd)
-
    return function(dispatch){
 
       return fetch('/api/addstation', {
@@ -203,7 +201,6 @@ export const addStation = () => {
       })
          .then( res => res.json() )
          .then( res => {
-            console.log('response after adding station', res)
             dispatch(createPendingAddition(null))
             dispatch(clearSearchTerms())
             getStations({searchTerms: 'none'})
@@ -242,7 +239,6 @@ export const deleteStation = () => {
    })
       .then( res => res.json() )
       .then( res => {
-         console.log('deleteStation', res)
          store.dispatch( setSnackbar(null) )
          store.dispatch( createPendingDeletion(null) )
          store.dispatch(setOpenPopup(null))
@@ -275,7 +271,6 @@ export const saveEdit = values => {
    })
       .then( res => res.json() )
       .then( res => {
-         console.log('response to edit', res)
          store.dispatch( createPendingEdit(null) )
          store.dispatch( setSnackbar(null) )
          store.dispatch( createPendingEdit(null) )

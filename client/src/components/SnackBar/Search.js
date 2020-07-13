@@ -43,7 +43,7 @@ const Search = ({
    
    return ( 
       <div className="Search">
-         <h2>Search for Stations</h2>
+         <h2>Search for Departments</h2>
          <section>
          
             <Form>

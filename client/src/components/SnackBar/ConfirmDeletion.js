@@ -12,7 +12,6 @@ const ConfirmDeletion = () => {
          <h4>Are you sure you want to delete this station?  This action is not reversible</h4>
          <div className="button-group">
             <button onClick={ () => {
-               console.log('cancel deletion')
                dispatch( setSnackbar(null) )
                dispatch( createPendingDeletion(null) )
             }}>

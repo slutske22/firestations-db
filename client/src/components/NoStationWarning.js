@@ -11,9 +11,6 @@ const NoStationWarning = () => {
    const zoom = useSelector(state => state.map.zoom)
    const zoomThreshhold = useSelector(state => state.map.zoomThreshhold)
 
-   console.log('zoom', zoom, 'zoomThreshhold', zoomThreshhold)
-
-
    if (zoom > zoomThreshhold) {
 
       return null
@@ -42,7 +39,7 @@ const NoStationWarning = () => {
                   overridePosition={ ({ left, bottom, top }) => {
                      const warningIcon = document.getElementById('warning-icon')
                      const iconTop = Math.floor(warningIcon.getBoundingClientRect().top)
-                     left = 20; 
+                     left = 30; 
                      bottom = window.innerHeight - iconTop + 10;
                      top = 'auto';
                      return { left, bottom, top }

@@ -36,20 +36,16 @@ const AddForm = () => {
 
       <div className="Add">
 
-         <h2>Add a Station</h2>
+         <h2>Add a Department</h2>
 
          <section>
             <MultiStepWizard
                // If there's already content in the Add form, and user wants to go back and edit before submitting, use that content.  Otherwise, Use the initialValues object (all empty fields for new addition)
                initialValues={search || initialValues} >
-                  <WizardStep 
-                     validationSchema={step1validation}
-                     onSubmit={() => console.log("Step1 onSubmit")}>
+                  <WizardStep validationSchema={step1validation} >
                      <Step1 />
                   </WizardStep>
-                  <WizardStep 
-                     validationSchema={step2validation}
-                     onSubmit={() => console.log("Step1 onSubmit")}>
+                  <WizardStep validationSchema={step2validation} >
                      <Step2 />
                   </WizardStep>
             </MultiStepWizard>
