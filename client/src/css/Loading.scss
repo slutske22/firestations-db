@@ -1,0 +1,26 @@
+.Loading {
+
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center
+
+}
+
+.loading-transition-enter {
+  opacity: 0;
+}
+.loading-transition-enter-active {
+  opacity: 1;
+  transition: opacity 250ms;
+}
+.loading-transition-exit {
+  opacity: 1;
+}
+.loading-transition-exit-active {
+  opacity: 0;
+}

@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import store from '../store'
-import { setSnackbar, clearSearchTerms } from './navigationActions'
+import { setSnackbar, clearSearchTerms, setLoadingStatus } from './navigationActions'
 
 export const C = {
 
@@ -56,8 +56,10 @@ export const setOpenPopup = id => ({
 
 export const getStations = search => {
 
-   const { zoom, zoomThreshhold } = store.getState().map
-
+   if (search?.newSearch){
+      store.dispatch( setLoadingStatus(true) )
+   }
+   
    const boundsToUse = search.bounds || store.getState().map.bounds
 
    const query = {
@@ -102,6 +104,7 @@ export const getStations = search => {
       }
 
    })
+   .finally( () => store.dispatch(setLoadingStatus(false)) )
 
 }
 
@@ -109,7 +112,7 @@ export const displayStations = (res, search) => {
 
    const results = res || store.getState().map.results
 
-   if (results.fitMapToResults){
+   if (results.fitMapToResults &&  results.stations.length > 0){
       fitMapToResults(results.stations)
    }
    store.dispatch( setFireStations(results.stations) )

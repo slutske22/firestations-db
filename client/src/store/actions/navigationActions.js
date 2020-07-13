@@ -7,6 +7,7 @@ export const C = {
    SET_SNACKBAR: "SET_SNACKBAR",
    SAVE_SEARCH_TERMS: "SAVE_SEARCH_TERMS",
    CLEAR_SEARCH_TERMS: "CLEAR_SEARCH_TERMS",
+   SET_LOADING_STATUS: "SET_LOADING_STATUS"
 
 }
 
@@ -59,4 +60,7 @@ export const clearSearchTerms = () => {
    }
 }
 
-
+export const setLoadingStatus = status => ({
+   type: C.SET_LOADING_STATUS,
+   status
+})
