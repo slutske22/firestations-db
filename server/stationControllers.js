@@ -128,7 +128,7 @@ export const getStations = (req, res) => {
    var totalQuery = {
       $and: []
    }
-   
+
    // Apply LatLng bounds
    if (req.body.coords){
       totalQuery.$and.push(
@@ -171,7 +171,10 @@ export const geocodeStation = (req, res) => {
       .then( r => {
          res.status(200).send(r)
       })
-      .catch( err => res.status(err.status).send(err) )
+      .catch( err => {
+         console.log(err)
+         res.status(404).send(err)
+      })
 
 }
 
