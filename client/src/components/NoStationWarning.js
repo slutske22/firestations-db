@@ -9,46 +9,57 @@ const NoStationWarning = () => {
 
    const stations = useSelector(state => state.map.stations)
    const zoom = useSelector(state => state.map.zoom)
-   const zoomThreshold = useSelector(state => state.map.zoomThreshold)
+   const zoomThreshhold = useSelector(state => state.map.zoomThreshhold)
+
+   console.log('zoom', zoom, 'zoomThreshhold', zoomThreshhold)
 
 
-   if (stations.length > 0 || zoom > zoomThreshold) {
+   if (zoom > zoomThreshhold) {
 
       return null
 
    } else {
 
-      return (
+      if (stations.length > 0 && zoom >= zoomThreshhold) {
 
-         <div className="NoStationWarning">
+         return null
 
-            <TiWarning id="warning-icon" data-tip data-for='nostationwarning' size={30} />
+      } else {
 
-            <ReactTooltip 
-               id="nostationwarning" 
-               effect='solid' 
-               border borderColor='snow' 
-               backgroundColor="rgba(0,0,0,0.85)" 
-               className="tooltip" 
-               arrowColor="transparent"
-               overridePosition={ ({ left, bottom, top }) => {
-                  const warningIcon = document.getElementById('warning-icon')
-                  const iconTop = Math.floor(warningIcon.getBoundingClientRect().top)
-                  left = 20; 
-                  bottom = window.innerHeight - iconTop + 10;
-                  top = 'auto';
-                  return { left, bottom, top }
-               }}>
+         return (
 
-               <p>
-                  Don't see any departments on the map?  This may happen if your filter does not produce any results in the current map boundary, or if you are too far zoomed out.
-               </p>
+            <div className="NoStationWarning">
+   
+               <TiWarning id="warning-icon" data-tip data-for='nostationwarning' size={30} />
+   
+               <ReactTooltip 
+                  id="nostationwarning" 
+                  effect='solid' 
+                  border borderColor='snow' 
+                  backgroundColor="rgba(0,0,0,0.85)" 
+                  className="tooltip" 
+                  arrowColor="transparent"
+                  overridePosition={ ({ left, bottom, top }) => {
+                     const warningIcon = document.getElementById('warning-icon')
+                     const iconTop = Math.floor(warningIcon.getBoundingClientRect().top)
+                     left = 20; 
+                     bottom = window.innerHeight - iconTop + 10;
+                     top = 'auto';
+                     return { left, bottom, top }
+                  }}>
+   
+                  <p>
+                     Don't see any departments on the map?  This may happen if your filter does not produce any results in the current map boundary, or if you are too far zoomed out.
+                  </p>
+   
+               </ReactTooltip>
+   
+            </div>
+            
+         )
+      }
 
-            </ReactTooltip>
-
-         </div>
-         
-      )
+      
 
    }
 
