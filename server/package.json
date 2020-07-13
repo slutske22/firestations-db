@@ -4,8 +4,11 @@
    "description": "server side for firestations-db",
    "main": "index.js",
    "scripts": {
-      "dev": "npx nodemon index.js --exec babel-node --presets babel-preset-env",
-      "start": "node ./node_modules/babel-cli/bin/babel-node.js --presets env index.js"
+      "dev": "npx nodemon src/index.js --exec babel-node --presets babel-preset-env",
+      "transpile": "./node_modules/.bin/babel src --out-dir build",
+      "clean": "rimraf build",
+      "build": "npm run clean && npm run transpile",
+      "start": "npm run build && node build"
    },
    "author": "Seth Lutske",
    "license": "ISC",
@@ -14,7 +17,8 @@
       "cors": "^2.8.5",
       "express": "^4.17.1",
       "geocodio-library-node": "^1.3.0",
-      "mongoose": "^5.9.18"
+      "mongoose": "^5.9.18",
+      "rimraf": "^3.0.2"
    },
    "devDependencies": {
       "babel-cli": "^6.26.0",
