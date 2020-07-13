@@ -8,8 +8,11 @@ import '../css/NoStationWarning.scss'
 const NoStationWarning = () => {
 
    const stations = useSelector(state => state.map.stations)
+   const zoom = useSelector(state => state.map.zoom)
+   const zoomThreshold = useSelector(state => state.map.zoomThreshold)
 
-   if (stations.length > 0) {
+
+   if (stations.length > 0 || zoom > zoomThreshold) {
 
       return null
 

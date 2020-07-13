@@ -91,6 +91,7 @@ export const getStations = search => {
 
       if (res.stations.length > 500 && search.newSearch){
 
+         store.dispatch( setOpenPopup(null) )
          store.dispatch( saveResults(res) )
          store.dispatch( setSnackbar('warning') )
 
