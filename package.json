@@ -10,7 +10,7 @@
       "server-dev": "cd server && npm run dev",
       "start": "cd ../server && npm start",
       "build": "cd client && npm run build",
-      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run setup"
+      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run setup && run build"
    },
    "repository": {
       "type": "git",
