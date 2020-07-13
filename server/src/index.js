@@ -2,13 +2,14 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import path from 'path'
 import routes from './routes'
 
 const app = express()
 const PORT = process.env.port || 3000
 
-app.use(express.static('../client/dist'))
-
+app.use(express.static(path.resolve(__dirname, '../../client/dist')))
+console.log(__dirname)
 
 // mongo connection:
 const uri = "mongodb+srv://slutske22:FSCluster@fscluster-tmsah.mongodb.net/FireStarter?retryWrites=true&w=majority";
@@ -22,7 +23,6 @@ const db = mongoose.connection
 
 db.once('open', function() {
   console.log('Connected to FireStarter DB Successfully')
-
 });
 
 
