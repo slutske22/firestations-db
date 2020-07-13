@@ -46,3 +46,9 @@ The front end of this application is built on a foundation of react, redux, and 
 ## Develop
 
 If you are interested in developing this application further, you can fork or clone it.  Running `npm run setup` in the root folder will install all dependencies for both the client and server applications, and `npm start` will build the front end, and run the backend server.  You can also `cd` into the `client` or `server` folders and with with each application individually.
+
+### To do:
+
+- Add better error handling for geocoding failures
+- Add mini loading spinner in bottom left corner of map for map pan and zoom related API call wait periods
+- Place all create, update, and delete functionality behind a login screen
