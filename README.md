@@ -6,6 +6,8 @@
 
 MERN Stack application in the form of a react-leaflet webmap.  This application displays all FEMA-registered fire departments on a map.  Full Create Read Update Delete functionality.
 
+##  [:eyes: DEMO :eyes:](https://firedepartment-dbs.herokuapp.com/)
+
 ## Visualizing Federal Emergency Management Agency Data
 
 FEMA's [fire department registry](https://apps.usfa.fema.gov/registry/) provides extensive data about fire departments throughout the US, including contact information, staffing data, and more.  This application provides a visually pleasing format to view departments on a map.  It offers search and filter capablities similar to those on the FEMA registry site.
@@ -46,6 +48,10 @@ The front end of this application is built on a foundation of react, redux, and 
 ## Develop
 
 If you are interested in developing this application further, you can fork or clone it.  Running `npm run setup` in the root folder will install all dependencies for both the client and server applications, and `npm start` will build the front end, and run the backend server.  You can also `cd` into the `client` or `server` folders and with with each application individually.
+
+### Multiple `package.json`s?
+
+The `client` and `server` folders each contain self-standing applications, with their own dependencies and scripts.  The root folder `package.json` offers some scripts which simply bundle the install, build, and server launch scripts from these two applications.  This is ideal for deploying the two applications separately (in a dev environment, for example), or when trying to build the front end and launch the back end server all in one command (which works well on an AWS EC2 instance).  However, for deployment on Heroku, Heroku requires that all node modules be available at the root level.  So all dependencies from both `server` and `client` are copied into the root `package.json` file.  While redundant, this solution enables development and production in a variety of environments.
 
 ### To do:
 
