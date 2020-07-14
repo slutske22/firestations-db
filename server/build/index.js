@@ -27,7 +27,7 @@ var _routes2 = _interopRequireDefault(_routes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-var PORT = process.env.port || 3000;
+var PORT = process.env.PORT || 3000;
 
 app.use(_express2.default.static(_path2.default.resolve(__dirname, '../../client/dist')));
 console.log(__dirname);
@@ -36,14 +36,14 @@ console.log(__dirname);
 var uri = "mongodb+srv://slutske22:FSCluster@fscluster-tmsah.mongodb.net/FireStarter?retryWrites=true&w=majority";
 
 _mongoose2.default.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+   useNewUrlParser: true,
+   useUnifiedTopology: true
 });
 
 var db = _mongoose2.default.connection;
 
 db.once('open', function () {
-  console.log('Connected to FireStarter DB Successfully');
+   console.log('Connected to FireStarter DB Successfully');
 });
 
 // body parser setup:
@@ -56,6 +56,10 @@ app.use((0, _cors2.default)());
 // routes setup
 (0, _routes2.default)(app);
 
+app.get("*", function (req, res) {
+   res.sendFile(_path2.default.resolve(__dirname, '../client', 'dist', 'index.html'));
+});
+
 app.listen(PORT, function () {
-  console.log('Listening on port ' + PORT);
+   console.log('Listening on port ' + PORT);
 });
